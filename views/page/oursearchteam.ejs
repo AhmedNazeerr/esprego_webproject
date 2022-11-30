@@ -214,20 +214,6 @@ body
  text-decoration:line-through;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .search{
     margin-top: 2vh;
     height: 70px;
@@ -609,6 +595,7 @@ input[type="range"]::-moz-range-thumb{
     <li class="class"><a href="/account">Account</a></li>
   </ul></header>
 </div>
+
 <div class="wrapper-body">
   <div class="wrapper">
       <div class="search">
@@ -625,10 +612,9 @@ input[type="range"]::-moz-range-thumb{
   </div>
 </div>
 </div>
-      
-  
+       
 
-  
+
 <div class = "main-wrapper">
   <div class = "container">
       <div class = "display-style-btns">
@@ -650,7 +636,7 @@ input[type="range"]::-moz-range-thumb{
                   <img src = "../images/<%=data.imgpath%>">
               </div>
               <div class = "item-detail">
-                  <a  href="/teamdetail/<%= data.workerid %>"class = "item-name"><%=data.workerfname%> <%=data.wrokerlname%></a>
+                  <a href="/teamdetail/<%= data.workerid %>" class = "item-name"><%=data.workerfname%> <%=data.workerlname%></a>
                   <div class = "item-price">
                       <span class = "new-price"><%=data.workerpos%></span>
                   </div>
@@ -667,25 +653,6 @@ input[type="range"]::-moz-range-thumb{
   </div>
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <% if(page > 1) { %> <a class="page-link" href="/team/?page=<%=page-1%>">Before</a> 
-      <% } %>
-    </li>
-    <% for(let i = iterator; i <= endingLink; i++) { %>
-        <% if(i === page) { %>
-        <li class="page-item"><a class="page-link" href="/team/?page=<%=i%>"><%=i%></a></li>
-        <% continue; %>
-    <% } %>
-        <a class="page-link"href="/team/?page=<%=i%>"><%=i%></a>
-        <% } %>
-        <li class="page-item">
-          <% if(page < numberOfPages) { %> <a class="page-link" href="/team/?page=<%=page+1%>">After</a> <% } %>
-      
-    </li>
-  </ul>
-</nav>>
 </body>
 <script>
   const itemList = document.querySelector('.item-list');

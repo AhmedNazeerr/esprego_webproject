@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-in/up Form</title>
+    <!-- css file -->
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+:root{
+  --background:rgb(111,68,109);
+  --slider:rgb(215, 200, 214);
+  /* this is for navbar */
+  --firstbox: white;
+}
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;900&display=swap');
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey; 
+    border-radius: 10px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #846DCF; 
+    border-radius: 8px;
+  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #846DCF; 
+}
+  .firstbox{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    background-color: #624A2E;
+  }
+  .firstbox header{
+    background-color: var(--firstbox);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7vh;
+    padding: 0px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+  }
+  .firstbox header .logo{
+    position: relative;
+    max-width: 80px;
+  }
+  .firstbox header ul{
+    position: relative;
+    display: flex;
+  }
+  .firstbox header ul li{
+    list-style: none;
+  }
+  .firstbox header ul li a{
+    display: inline-block;
+    color: #333;
+    font-weight: 400;
+    margin-left: 40px;
+    text-decoration: none;
+  }
+
+
+body,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color:white;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  height: 640px;
+  background-color: #fff;
+  border-radius: 3.3rem;
+  box-shadow: 0 70px 50px -30px rgba(0, 0, 0, 0.27);
+}
+
+.inner-box {
+  position: absolute;
+  width: calc(100% - 4.1rem);
+  height: calc(100% - 4.1rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.forms-wrap {
+  position: absolute;
+  height: 100%;
+  width: 45%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  transition: 0.8s ease-in-out;
+}
+
+form {
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  transition: opacity 0.02s 0.4s;
+}
+
+form.sign-up-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 35%;
+  margin-right: 0.3rem;
+}
+
+.heading h2 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #151111;
+}
+
+.heading h6 {
+  color: #bababa;
+  font-weight: 400;
+  font-size: 0.75rem;
+  display: inline;
+}
+
+.toggle {
+  color: #151111;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.toggle:hover {
+  color: var(--background);
+}
+
+.input-wrap {
+  position: relative;
+  height: 37px;
+  margin-bottom: 2rem;
+}
+
+.input-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #bbb;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #151111;
+  transition: 0.4s;
+}
+
+label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.input-field.active {
+  border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+  font-size: 0.75rem;
+  top: -2px;
+}
+
+.sign-btn {
+  display: inline-block;
+  width: 100%;
+  height: 43px;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+}
+
+.sign-btn:hover {
+  background-color: var(--background);
+}
+
+.text {
+  color: #bbb;
+  font-size: 0.7rem;
+}
+
+.text a {
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.text a:hover {
+  color: var(--background);
+}
+
+main.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  pointer-events: all;
+}
+
+main.sign-up-mode .forms-wrap {
+  left: 55%;
+}
+
+main.sign-up-mode .carousel {
+  left: 0%;
+}
+
+.carousel {
+  position: absolute;
+  height: 100%;
+  width: 55%;
+  left: 45%;
+  top: 0;
+  background-color:var(--slider);
+  border-radius: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  transition: 0.8s ease-in-out;
+}
+
+.images-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.image {
+  width: 100%;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.5s;
+}
+
+.img-1 {
+  transform: translate(0, -50px);
+}
+
+.img-2 {
+  transform: scale(0.4, 0.5);
+}
+
+.img-3 {
+  transform: scale(0.3) rotate(-20deg);
+}
+
+.image.show {
+  opacity: 1;
+  transform: none;
+}
+
+.text-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text-wrap {
+  max-height: 2.2rem;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transform: translateY(0);
+  transition: 0.5s;
+}
+
+.text-group h2 {
+  line-height: 2.2rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.bullets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bullets span {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #aaa;
+  margin: 0 0.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bullets span.active {
+  width: 1.1rem;
+  background-color: #151111;
+  border-radius: 1rem;
+}
+
+@media (max-width: 850px) {
+  .box {
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
+  }
+
+  .inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 2rem;
+  }
+
+  .forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+  }
+
+  form {
+    max-width: revert;
+    padding: 1.5rem 2.5rem 2rem;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+  }
+
+  .heading {
+    margin: 2rem 0;
+  }
+
+  form.sign-up-form {
+    transform: translateX(100%);
+  }
+
+  main.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+  }
+
+  main.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+  }
+
+  .carousel {
+    position: revert;
+    height: auto;
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+  }
+
+  .images-wrapper {
+    display: none;
+  }
+
+  .text-slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 530px) {
+  main {
+    padding: 1rem;
+  }
+
+  .box {
+    border-radius: 2rem;
+  }
+
+  .inner-box {
+    padding: 1rem;
+  }
+
+  .carousel {
+    padding: 1.5rem 1rem;
+    border-radius: 1.6rem;
+  }
+
+  .text-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .text-group h2 {
+    font-size: 1.2rem;
+  }
+
+  form {
+    padding: 1rem 2rem 1.5rem;
+  }
+}
+
+.error{
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 40px 0 0;
+}
+
+
+
+  </style>
+  <body>
+    <div class="firstbox">
+      <div class="circle"></div>
+      <header>
+         <a href="" class="logo"><img src="../images/logo.png" alt="here is logo"></a>
+ <ul>
+  <li class="class"><a href="/home">Home</a></li>
+  <li class="class"><a href="/about">About us</a></li>
+  <li class="class"><a href="/contact">Contact us</a></li>
+  <li class="class"><a href="/team">Team</a></li>
+  <li class="class"><a href="/product">Products</a></li>
+  <li class="class"><a href="/account">Account</a></li>
+</ul></header>
+</div>
+    <main>
+    
+      <div class="box">
+        <div class="inner-box">
+          <!-- main div ( both forms ) -->
+          <div class="forms-wrap">
+            <!-- login form  -->
+            <form action="/account" method="post" autocomplete="off" class="sign-in-form" >
+              <div class="logo">
+                <img src="../images/logo.png" alt="logo" />
+              </div>
+
+              <div class="heading">
+                <h2>Welcome Back</h2>
+                <h6>Not registred yet?</h6>
+                <a href="#" class="toggle">Sign up</a>
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    id="usernam"
+                    name="forloginname"
+                    class="input-field"
+                    autocomplete="off"
+                   
+                  />
+                 
+                  <label>Username</label>
+                  <span id="username" class="error"> </span>
+                </div>
+
+                <div class="input-wrap">
+                
+                  <input
+                    type="password"
+                   id="passw"
+                   name="forloginpassword"
+                    class="input-field"
+                    autocomplete="off"
+                    
+                  />
+                  
+                  <label>Password</label>
+                  <span id="passwords" class="error"> </span>
+                </div>
+
+                <input type="submit" value="Sign In" class="sign-btn" />
+
+                <p class="text">
+                  Forgotten your password or you login datails?
+                  <a href="#">Get help</a> signing in
+                </p>
+              </div>
+            </form>
+
+
+
+
+
+  
+            <form action="/register" autocomplete="off" method="post" class="sign-up-form" >
+              <div class="logo">
+                <img src="../images/logo.png" alt="logo" />
+              </div>
+
+              <div class="heading">
+                <h2>Get Started</h2>
+                <h6>Already have an account?</h6>
+                <a href="#" class="toggle">Sign in</a>
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    id="user1"
+                    name="usernameregister"
+                    class="input-field"
+                    autocomplete="off"
+                  />
+                  <label>Username</label>
+                  <span id="username1" class="error"> </span>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="email"
+                    id="emails"
+                    name="emailregister"
+                    class="input-field"
+                    autocomplete="off"
+                  />
+                  <label>Email</label>
+                  <span id="emailids" class="error"> </span>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    id="pass1"
+                    name="passwordregister"
+                    class="input-field"
+                    autocomplete="off"
+                  />
+                  <label>Password</label>
+                  <span id="passwords1" class="error"> </span>
+                </div>
+
+                <input type="submit" value="Sign Up" class="sign-btn"/>
+
+                <p class="text">
+                  By signing up, I agree to the
+                  <a href="#">Terms of Services</a> and
+                  <a href="#">Privacy Policy</a>
+                </p>
+              </div>
+            </form>
+          </div>
+<!-- side slider -->
+          <div class="carousel">
+            <div class="images-wrapper">
+              <img src="../images/image4.png" class="image img-1 show" alt="" />
+              <img src="../images/image2.png" class="image img-2" alt="" />
+            </div>
+
+            <div class="text-slider">
+              <div class="text-wrap">
+                <div class="text-group">
+                  <!-- raw data -->
+                  <h2>Lorem ipsum dolor sit amet</h2>
+                  <h2>Lorem ipsum dolor sit amet</h2>
+                </div>
+              </div>
+
+              <div class="bullets">
+                <span class="active" data-value="1"></span>
+                <span data-value="2"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Javascript file -->
+<script>
+  //input field variable
+const inputs = document.querySelectorAll(".input-field");
+// for the signup button under welcome back
+const toggle_btn = document.querySelectorAll(".toggle");
+const main = document.querySelector("main");
+// for the slider( carousel))
+const bullets = document.querySelectorAll(".bullets span");
+//for the images on the carousel
+const images = document.querySelectorAll(".image");
+
+//to move (name and email and password to bottom up when the input box is clicked)
+inputs.forEach((inp) => {
+  inp.addEventListener("focus", () => {
+    inp.classList.add("active");
+  });
+  inp.addEventListener("blur", () => {
+    if (inp.value != "") return;
+    inp.classList.remove("active");
+  });
+});
+//to move signin form to left 
+toggle_btn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    main.classList.toggle("sign-up-mode");
+  });
+});
+
+function moveSlider() {
+  let index = this.dataset.value;
+
+  let currentImage = document.querySelector(`.img-${index}`);
+  images.forEach((img) => img.classList.remove("show"));
+  currentImage.classList.add("show");
+
+  const textSlider = document.querySelector(".text-group");
+  textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+
+  bullets.forEach((bull) => bull.classList.remove("active"));
+  this.classList.add("active");
+}
+
+bullets.forEach((bullet) => {
+  bullet.addEventListener("click", moveSlider);
+});
+
+
+
+
+// function validation(){
+
+//   var user = document.getElementById('user').value;
+//   var pass = document.getElementById('pass').value;
+//   if(user == ""){
+//     document.getElementById('username').innerHTML ="Please fill the username field";
+//     return false;
+//   }
+//   if((user.length <= 2) || (user.length > 20)) {
+//     document.getElementById('username').innerHTML ="Username lenght must be between 2 and 20";
+//     return false;	
+//   }
+//   if(!isNaN(user)){
+//     document.getElementById('username').innerHTML ="only characters are allowed";
+//     return false;
+//   }
+//     if(pass == ""){
+//     document.getElementById('passwords').innerHTML ="Please fill the password field";
+//     return false;
+//   }
+//   if((pass.length <= 5) || (pass.length > 20)) {
+//     document.getElementById('passwords').innerHTML ="Passwords lenght must be between  5 and 20";
+//     return false;	
+//   }
+// }
+
+// function validation1(){
+
+//   var user1 = document.getElementById('user1').value;
+//   var pass1 = document.getElementById('pass1').value;
+//   var emails = document.getElementById('emails').value;
+//   if(user1 == ""){
+//     document.getElementById('username1').innerHTML ="Please fill the username field";
+//     return false;
+//   }
+//   if((user1.length <= 2) || (user1.length > 20)) {
+//     document.getElementById('username1').innerHTML ="Username lenght must be between 2 and 20";
+//     return false;	
+//   }
+//   if(!isNaN(user1)){
+//     document.getElementById('username1').innerHTML ="only characters are allowed";
+//     return false;
+//   }
+//   if(pass1 == ""){
+//     document.getElementById('passwords1').innerHTML ="Please fill the password field";
+//     return false;
+//   }
+//   if((pass1.length <= 5) || (pass1.length > 20)) {
+//     document.getElementById('passwords1').innerHTML ="Passwords lenght must be between  5 and 20";
+//     return false;	
+//   }
+
+//   if(emails == ""){
+//     document.getElementById('emailids').innerHTML ="Please fill the email field";
+//     return false;
+//   }
+//   if(emails.indexOf('@') <= 0 ){
+//     document.getElementById('emailids').innerHTML =" @ Invalid Position";
+//     return false;
+//   }
+
+//   if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+//     document.getElementById('emailids').innerHTML =". Invalid Position";
+//     return false;
+//   }
+// }
+
+</script>
+  </body>
+</html>

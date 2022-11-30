@@ -214,20 +214,6 @@ body
  text-decoration:line-through;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .search{
     margin-top: 2vh;
     height: 70px;
@@ -610,25 +596,28 @@ input[type="range"]::-moz-range-thumb{
   </ul></header>
 </div>
 <div class="wrapper-body">
-  <div class="wrapper">
-      <div class="search">
-          <form action="/searchteam">
-            <input type="text" class="search-input" placeholder="search..." name="sname" id="sname">
-            <input  class="search-icon" type="submit" value="S">
+    <div class="wrapper">
+        <div class="search">
+            <form action="/searchproduct">
+              <input type="text" class="search-input" placeholder="search..." name="pname" id="pname">
+              <input  class="search-icon" type="submit" value="S">
+          </div>
+        <div class="price-input" >
+        <div class="field">
+          <span>Min</span>
+          <input type="number" class="input-min" value="0" name="min" id="min">
         </div>
-      <div class="price-input" >
-      <div class="field">
-        <span>Year OF Experience</span>
-        <input type="number" class="input-min" max="60" value="60" name="year" id="year">
-      </div>
-    </form>
-  </div>
-</div>
-</div>
-      
+        <div class="separator">-</div>
+        <div class="field">
+          <span>Max</span>
+          <input type="number" class="input-max" value="10000" name="max" id="max">
+        </div>
+    </div>
+</form>
+    </div>
+    </div>
   
 
-  
 <div class = "main-wrapper">
   <div class = "container">
       <div class = "display-style-btns">
@@ -647,15 +636,16 @@ input[type="range"]::-moz-range-thumb{
        %> 
           <div class = "item">
               <div class = "item-img">
-                  <img src = "../images/<%=data.imgpath%>">
+                  <img src = "../images/<%=data.prodimg%>">
               </div>
               <div class = "item-detail">
-                  <a  href="/teamdetail/<%= data.workerid %>"class = "item-name"><%=data.workerfname%> <%=data.wrokerlname%></a>
+                  <a href="/productdetail/<%= data.prodid %>" class = "item-name"><%=data.prodname%></a>
                   <div class = "item-price">
-                      <span class = "new-price"><%=data.workerpos%></span>
+                      <span class = "new-price"><%=data.prodprice%></span>
+                      <span class = "old-price"><%=data.prodprice%></span>
                   </div>
-                  <p><%=data.workerdesc%></p>
-                  <p><%=data.workerfax%></p>
+                  <p><%=data.proddesc%></p>
+                  <p>Best Before <%=data.prodwrant%> year</p>
                   <button type = "button" class = "add-btn">add to cart</button>
               </div>
           </div>
@@ -667,25 +657,6 @@ input[type="range"]::-moz-range-thumb{
   </div>
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <% if(page > 1) { %> <a class="page-link" href="/team/?page=<%=page-1%>">Before</a> 
-      <% } %>
-    </li>
-    <% for(let i = iterator; i <= endingLink; i++) { %>
-        <% if(i === page) { %>
-        <li class="page-item"><a class="page-link" href="/team/?page=<%=i%>"><%=i%></a></li>
-        <% continue; %>
-    <% } %>
-        <a class="page-link"href="/team/?page=<%=i%>"><%=i%></a>
-        <% } %>
-        <li class="page-item">
-          <% if(page < numberOfPages) { %> <a class="page-link" href="/team/?page=<%=page+1%>">After</a> <% } %>
-      
-    </li>
-  </ul>
-</nav>>
 </body>
 <script>
   const itemList = document.querySelector('.item-list');
@@ -705,5 +676,48 @@ detailsViewBtn.addEventListener('click', () => {
     gridViewBtn.classList.remove("active-btn");
     itemList.classList.add("details-active");
 });
+const rangeInput = document.querySelectorAll(".range-input input"),
+priceInput = document.querySelectorAll(".price-input input"),
+range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+
+priceInput.forEach(input =>{
+    input.addEventListener("input", e =>{
+        let minPrice = parseInt(priceInput[0].value),
+        maxPrice = parseInt(priceInput[1].value);
+        
+        if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
+            if(e.target.className === "input-min"){
+                rangeInput[0].value = minPrice;
+                range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+            }else{
+                rangeInput[1].value = maxPrice;
+                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+            }
+        }
+    });
+});
+
+rangeInput.forEach(input =>{
+    input.addEventListener("input", e =>{
+        let minVal = parseInt(rangeInput[0].value),
+        maxVal = parseInt(rangeInput[1].value);
+
+        if((maxVal - minVal) < priceGap){
+            if(e.target.className === "range-min"){
+                rangeInput[0].value = maxVal - priceGap
+            }else{
+                rangeInput[1].value = minVal + priceGap;
+            }
+        }else{
+            priceInput[0].value = minVal;
+            priceInput[1].value = maxVal;
+            range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+        }
+    });
+});
+
+
 </script>
 </html>

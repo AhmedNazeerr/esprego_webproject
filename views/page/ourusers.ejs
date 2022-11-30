@@ -8,9 +8,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
     <title></title>
-
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="style.css">
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -222,12 +219,11 @@ body.dark .switch:before{
     position: relative;
     left: 250px;
     background-color: var(--panel-color);
-    min-height: 100vh;
+    /* min-height: 100vh; */
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    height: 90vh;
-    /* overflow: hidden; */
+    height: 100vh;
 }
 nav.close ~ .dashboard{
     left: 73px;
@@ -259,142 +255,98 @@ nav.close ~ .dashboard .top{
     padding-top: 50px;
     margin-bottom: 100px;
     width: 100%;
-    /* height: 100%; */
     background-color:var(--panel-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .dash-content .title{
     display: flex;
     align-items: center;
     margin: 60px 0 30px 0;
 }
-.container{
-    margin-top: 25px;
-    margin-bottom: 25px;
-  max-width: 700px;
-  width: 100%;
-  background-color:var(--panel-color);
-  padding: 25px 30px;
-  border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+.margin{
+  margin: 10px;
+}
+.image{
+ object-fit: cover;
+}
+.contener {
+    float: left;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 320px;
+    height: 470px;
+    overflow: hidden;
+    background:var(--panel-color);
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 #00000073;
+    transition: all 0.3s;
+}
 
+.contener:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 11px 14px rgb(0 0 0 / 25%), 0 8px 20px rgb(0 0 0 / 10%);
 }
-.container .title{
-  font-size: 25px;
-  font-weight: 500;
-  position: relative;
-  color: var(--text-color);
+
+.image-contener {
+    display: block;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
 }
-.container .title::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+
+.image-contener img {
+    width: 100%;
 }
-.content form{
-    height: 70%;
+
+.meta-contener {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 110px;
+    padding: 10px 20px;
 }
-.content form .user-details{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20px 0 12px 0;
-  color: var(--text-color);
+
+.meta-contener .title {
+    padding: 0;
+    margin: 10px 0;
+    font-size: 22px;
+    color: var(--text-color);
 }
-form .user-details .input-box{
-  margin-bottom: 15px;
-  width: calc(100% / 2 - 20px);
+
+.meta-contener .desc {
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-color);
 }
-form .input-box span.details{
-  display: block;
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: var(--text-color);
+
+.button-contener {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    text-align: center;
+    height: 40px;
+    margin: 2px;
 }
-form .input-custom{
-  display: block;
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: var(--text-color);
+
+.button-contener .button {
+    width: 100%;
+    padding: 6px 0;
+    text-decoration: none;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s;
 }
-.user-details .input-box input{
-  height: 45px;
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border-radius: 5px;
-  padding-left: 15px;
-  border: 1px solid #ccc;
-  border-bottom-width: 2px;
-  transition: all 0.3s ease;
+
+.button-contener .button:hover {
+    padding-left: 15px;
 }
-.user-details .input-box input:focus,
-.user-details .input-box input:valid{
-  border-color: #9b59b6;
-}
- form .gender-details .gender-title{
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--text-color);
- }
- form .category{
-   display: flex;
-   width: 80%;
-   margin: 14px 0 ;
-   justify-content: space-between;
- }
- form .category label{
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-   color: var(--text-color);
- }
- form .category label .dot{
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  margin-right: 10px;
-  border: 5px solid transparent;
-  transition: all 0.3s ease;
-  border-color: var(--text-color);
-}
- #dot-1:checked ~ .category label .one,
- #dot-2:checked ~ .category label .two,
- #dot-3:checked ~ .category label .three{
-   background: #9b59b6;
-   border-color: #d9d9d9;
- }
- form input[type="radio"]{
-   display: none;
-   color: white;
- }
- form .button{
-   height: 45px;
-   margin: 35px 0
- }
- form .button input{
-   height: 100%;
-   width: 100%;
-   border-radius: 5px;
-   border: none;
-   color: #fff;
-   font-size: 18px;
-   font-weight: 500;
-   letter-spacing: 1px;
-   cursor: pointer;
-   transition: all 0.3s ease;
-   background: linear-gradient(135deg, #71b7e6, #9b59b6);
- }
- form .button input:hover{
-  /* transform: scale(0.99); */
-  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
-  }
-  input .image{
-    margin: 10px;
-  }
+
 </style>
 <body>
     <nav>
@@ -429,16 +381,16 @@ form .input-custom{
                     <span class="link-name">Our product</span>
                 </a></li>
                 <li><a href="/admin/user">
-                  <i class="uil uil-files-landscapes"></i>
-                  <span class="link-name">Our User</span>
-              </a></li>
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Our User</span>
+                </a></li>
                             </ul>
             
             <ul class="logout-mode">
-              <li><a href="/adminsignout">
-                <i class="uil uil-signout"></i>
-                <span class="link-name">Logout</span>
-            </a></li>
+                <li><a href="/adminsignout">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
 
                 <li class="mode">
                     <a href="#">
@@ -459,71 +411,31 @@ form .input-custom{
             <i class="uil uil-bars sidebar-toggle"></i>  
         </div>
 <div class="dash-content">
-    <div class="container">
-        <div class="title">Registration</div>
-        <div class="content">
-          <form action="/admin/team/add" method="post" enctype="multipart/form-data">
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">First Name</span>
-                <input type="text" placeholder="Enter your First name" required name="firstname">
-              </div>
-              <div class="input-box">
-                <span class="details">Last Name</span>
-                <input type="text" placeholder="Enter your Last Name" required name="lastname">
-              </div>
-              <div class="input-box">
-                <span class="details">Email</span>
-                <input type="text" placeholder="Enter your email" required name="email">
-              </div>
-              <div class="input-box">
-                <span class="details">Cnic Number</span>
-                <input type="text" placeholder="Enter your Cnic" required name="cnic">
-              </div>
-              <div class="input-box">
-                <span class="details">Position</span>
-                <input type="text" placeholder="Enter your Position" required name="pos">
-              </div>
-              <div class="input-box">
-                <span class="details">Degree</span>
-                <input type="text" placeholder="Enter your Degree" required name="deg">
-              </div>
-              <div class="input-box">
-                <span class="details">Phone</span>
-                <input type="number" placeholder="Enter your Phone" required name="phn">
-              </div>
-              <div class="input-box">
-                <span class="details">Experience</span>
-                <input type="number" placeholder="Enter your Experience" required name="exp">
-              </div>
-              <div class="input-box">
-                <span class="details">Career Level</span>
-                <input type="text" placeholder="Enter your Career-Level" required name="level">
-              </div>
-              <div class="input-box">
-                <span class="details">Description</span>
-                <input type="text" placeholder="Enter your Description" required name="Des">
-              </div>
-              <div class="input-box">
-                <span class="details">fax</span>
-                <input type="number" placeholder="Enter your fax" required name="fax">
-              </div>
-              <div class="input-box1">
-                <span class="input-custom">Image</span>
-                <input type="file" class="image" required name="image"> 
-              </div>
+    <%if(data.length > 0){
+    
+      data.forEach(function(data){
+   %> 
+   <div class="contener">
+            <div class="image-contener">
+                <img src="../images/user.png" alt="">
             </div>
-            <div class="button">
-              <input type="submit" value="Register">
+            <div class="meta-contener">
+                <h2 class="title"><%=data.username%></h2>
+                <span class="desc"><b>Role :</b><%=data.role%></span>
             </div>
-          </form>
+            <div class="button-contener">
+                <a href="/admin/user/update?id=<%=data.username %>" class="button">Update →</a>
+            </div>
+            <div class="button-contener">
+                <a href="/admin/user/delete/<%= data.username %>" class="button">Delete →</a>
+            </div>
         </div>
-      </div>
+    <%
+                                });
+                            }
+                            %>
 </div>
     </section>
-
-
-
 
     <script>
         const body = document.querySelector("body"),
@@ -558,6 +470,7 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
- </script>
+
+    </script>
 </body>
 </html>
