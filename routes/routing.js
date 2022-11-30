@@ -22,7 +22,16 @@ const router=express.Router();
 
 router.get("/", (req, res) => main.servehome(req, res));
 router.get("/home", (req, res) => main.servehome(req, res));
-router.get("/contact", (req, res) => main.servecontactus(req, res));
+
+router.post("/contactus", (req, res) => main.contactus(req, res));
+router.get("/contactadmin", (req, res) => main.contactadmin(req, res));
+
+
+
+
+
+
+
 router.get("/about", (req, res) => main.serveaboutus(req, res));
 router.get("/team", (req, res) => main.getteam(req, res));
 router.get("/searchteam", (req, res) => main.getsearchteam(req, res));

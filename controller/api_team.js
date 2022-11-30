@@ -1,10 +1,4 @@
 const connection = require("../config/database");
-const transporter = require("../config/mailer");
-const bcrypt = require("bcrypt");
-const pdf = require("html-pdf");
-const fs = require("fs");
-var valid = require("validator");
-const path=require('path')
 
 //displaying form for adding new team member
 exports.teamadd = (req, res) => {

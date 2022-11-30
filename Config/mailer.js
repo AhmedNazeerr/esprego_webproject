@@ -1,9 +1,10 @@
 "use strict";
 const nodemailer = require("nodemailer");
+const dotenv=require('dotenv').config();
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  host: "smtp.gmail.com",
-  port: "464",
+  service: `${dotenv.parsed.Service}`,
+  host: `${dotenv.parsed.Host}`,
+  port: `${dotenv.parsed.Port}`,
   secure: true,
   auth: {
     user: "esprego.coffee@gmail.com",

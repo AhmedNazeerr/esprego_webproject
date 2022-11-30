@@ -8,14 +8,12 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
     <title></title>
-
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="style.css">
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <!--<title>Admin Dashboard Panel</title>--> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
     /* ===== Google Font Import - Poppins ===== */
@@ -300,7 +298,7 @@ nav.close ~ .dashboard .top{
 .content form .user-details{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 20px 0 12px 0;
   color: var(--text-color);
 }
@@ -395,12 +393,19 @@ form .input-custom{
   input .image{
     margin: 10px;
   }
+  .heads{
+    background-color:var(--panel-color) ;
+    border-color: var(--text-color);
+  }
+  .headp{
+    color:var(--text-color) ;
+    border-color: var(--text-color);
+  }
 </style>
 <body>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <!--<img src="images/logo.png" alt="">-->
             </div>
 
             <span class="logo_name">Admin Panel</span>
@@ -408,10 +413,10 @@ form .input-custom{
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="/dash">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dahsboard</span>
-                </a></li>
+              <li><a href="/dash">
+                <i class="uil uil-estate"></i>
+                <span class="link-name">Dahsboard</span>
+            </a></li>
                 <li><a href="/admin/team/add">
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Add new member</span>
@@ -429,20 +434,20 @@ form .input-custom{
                     <span class="link-name">Our product</span>
                 </a></li>
                 <li><a href="/admin/user">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Our User</span>
-                </a></li>
-                <li><a href="/contactadmin">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Customer Support</span>
-                </a></li>
+                  <i class="uil uil-files-landscapes"></i>
+                  <span class="link-name">Our User</span>
+              </a></li>
+              <li><a href="/contactadmin">
+                <i class="uil uil-files-landscapes"></i>
+                <span class="link-name">Customer Support</span>
+            </a></li>
                             </ul>
             
             <ul class="logout-mode">
-                <li><a href="/adminsignout">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+              <li><a href="/adminsignout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
 
                 <li class="mode">
                     <a href="#">
@@ -457,61 +462,35 @@ form .input-custom{
             </ul>
         </div>
     </nav>
-
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>  
         </div>
 <div class="dash-content">
-    <div class="container">
-        <div class="title">Registration</div>
-        <div class="content">
-          <form action="/admin/product/update" method="post" enctype="multipart/form-data">
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">Product Name</span>
-                <input type="text" placeholder="Enter your Product name" required name="prodname" value="<%=data[0].prodname%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Brand Name</span>
-                <input type="text" placeholder="Enter your Brand Name" required name="brandname" value="<%=data[0].prodbrandname%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Quantity</span>
-                <input type="number" placeholder="Enter your Quantity" required name="quantity" 
-                value="<%=data[0].prodinstock%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Description</span>
-                <input type="text" placeholder="Enter Description" required name="desc" 
-                value="<%=data[0].proddesc%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Price</span>
-                <input type="number" placeholder="Enter Price" required name="price" value="<%=data[0].prodprice%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Warranty up to </span>
-                <input type="number" placeholder="Enter Warranty" required name="wrant" value="<%=data[0].prodwrant%>">
-              </div>
-              <div class="input-box1">
-                <span class="input-custom">Image</span>
-                <input type="file" class="image"  name="image" value="<%=data[0].prod%>"> 
-              </div>
-              <input type="hidden"  name="id" value="<%=data[0].prodid%>">
-            </div>
-            <div class="button">
-              <input type="submit" value="Register">
-            </div>
-          </form>
-        </div>
-      </div>
+    <%if(data.length > 0){
+
+        data.forEach(function(data){
+     %> 
+     <div class="card mt-3 heads">
+        
+    
+
+     <div class="card-header headp">
+        <%=data.name%>
+    </div>
+    <div class="card-body headp">
+      <h5 class="card-title headp"><%=data.email%></h5>
+      <p class="card-text headp"><%=data.message%></p>
+      <a href="#" class="btn btn-secondary">Reply</a>
+    </div>
+</div>
+        <%
+                        });
+                    }
+                    %>
+    
 </div>
     </section>
-
-
-
-
     <script>
         const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");

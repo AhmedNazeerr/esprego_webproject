@@ -4,7 +4,7 @@ var flash = require('connect-flash');
 var session = require('express-session')
 const app=express()
 const path=require("path")
-const port=3000
+const dotenv=require('dotenv').config();
 app.set('view engine', 'ejs');
 
 const Routes = require("./routes/routing");
@@ -22,7 +22,7 @@ app.use(cookieParser());
 //expiry date
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
-    secret: "secretkey",
+    secret:dotenv.parsed.secure ,
     saveUninitialized:true,
     cookie: { maxAge: oneDay },
     resave: false 
@@ -40,7 +40,7 @@ app.use("/", Routes_admin_product);
 app.use("/", Routes_admin_user);
 app.use("/", Routes_auth);
 app.use("/", Routes_pdf);
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+  app.listen(dotenv.parsed.PORT, () => {
+    console.log(`Example app listening on port ${process.env.PORT}`)
   })
 
