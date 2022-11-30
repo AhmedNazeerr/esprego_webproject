@@ -5,94 +5,108 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign-in/up Form</title>
-    <!-- css file -->
-  </head>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-:root{
-  --background:rgb(111,68,109);
-  --slider:rgb(215, 200, 214);
-  /* this is for navbar */
-  --firstbox: white;
-}
-*,
-*::before,
-*::after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;900&display=swap');
-::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-  }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px grey; 
-    border-radius: 10px;
-  }
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #846DCF; 
-    border-radius: 8px;
-  }
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #846DCF; 
-}
-  .firstbox{
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-content: space-between;
-    align-items: center;
-    background-color: #624A2E;
-  }
-  .firstbox header{
-    background-color: var(--firstbox);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 7vh;
-    padding: 0px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1;
-  }
-  .firstbox header .logo{
-    position: relative;
-    max-width: 80px;
-  }
-  .firstbox header ul{
-    position: relative;
-    display: flex;
-  }
-  .firstbox header ul li{
-    list-style: none;
-  }
-  .firstbox header ul li a{
-    display: inline-block;
-    color: #333;
-    font-weight: 400;
-    margin-left: 40px;
+ <!-- font awesome cdn link  -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+ 
+ </head>
+ <style>
+  @import url('https://fonts.googleapis.com/css2?family=Merienda+One&family=Nunito:wght@200;300;400;500;600&display=swap');
+ :root{
+    --main-color:#be9c79;
+    --black:#333;
+    --white:#fff;
+    --light-color:#666;
+    --border:.2rem solid var(--black);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+ }
+ 
+ *{
+    font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
     text-decoration: none;
-  }
+    text-transform: capitalize;
+ }
+ 
+ *::selection{
+    background-color: var(--main-color);
+    color:var(--white);
+ }
+ 
+ ::-webkit-scrollbar{
+    height: .5rem;
+    width: 1rem;
+ }
+ 
+ ::-webkit-scrollbar-track{
+    background-color: transparent;
+ }
+ 
+ ::-webkit-scrollbar-thumb{
+    background-color: var(--main-color);
+ }
+ 
+ html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+ }
+ 
+ section{
+    padding:2rem 2rem;
+    max-width: 1200px;
+    margin:0 auto;
+ }
+
+.pheader{
+   position: sticky;
+   top:0; left: 0; right:0;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   z-index: 1000;
+}
+
+.pheader .flex{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+   padding:1rem .5rem;
+}
+
+.pheader .flex .logop img{
+   height: 4.5rem;
+}
+
+.pheader .flex .navbar a{
+   margin-left: 1rem;
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.pheader .flex .navbar a:hover{
+   text-decoration: underline;
+   color:var(--main-color);
+}
+
+
 
 
 body,
 input {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
 }
 
 main {
   width: 100%;
-  min-height: 100vh;
+  min-height: 89vh;
   overflow: hidden;
   background-color:white;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +147,7 @@ form {
   max-width: 260px;
   width: 100%;
   margin: 0 auto;
-  height: 100%;
+  height:100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -173,11 +187,13 @@ form.sign-up-form {
 .toggle {
   color: #151111;
   text-decoration: none;
-  font-size: 0.75rem;
+  font-size: 17px;
   font-weight: 500;
   transition: 0.3s;
 }
-
+.heading h6{
+  font-size: 16px;
+}
 .toggle:hover {
   color: var(--background);
 }
@@ -197,7 +213,7 @@ form.sign-up-form {
   outline: none;
   border-bottom: 1px solid #bbb;
   padding: 0;
-  font-size: 0.95rem;
+  font-size: 15px;
   color: #151111;
   transition: 0.4s;
 }
@@ -207,7 +223,7 @@ label {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.95rem;
+  font-size: 16px;
   color: #bbb;
   pointer-events: none;
   transition: 0.4s;
@@ -218,7 +234,7 @@ label {
 }
 
 .input-field.active + label {
-  font-size: 0.75rem;
+  font-size: 20px;
   top: -2px;
 }
 
@@ -231,7 +247,7 @@ label {
   border: none;
   cursor: pointer;
   border-radius: 0.8rem;
-  font-size: 0.8rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
   transition: 0.3s;
 }
@@ -242,10 +258,12 @@ label {
 
 .text {
   color: #bbb;
-  font-size: 0.7rem;
+  font-size: 15px;
 }
 
-.text a {
+.text button {
+  cursor: pointer;
+  background-color: white;
   color: #bbb;
   transition: 0.3s;
 }
@@ -278,7 +296,7 @@ main.sign-up-mode .carousel {
   width: 55%;
   left: 45%;
   top: 0;
-  background-color:var(--slider);
+  background-color:#EBE1D7;
   border-radius: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -342,7 +360,7 @@ main.sign-up-mode .carousel {
 .text-group h2 {
   line-height: 2.2rem;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 20px;
 }
 
 .bullets {
@@ -465,25 +483,26 @@ main.sign-up-mode .carousel {
   font-size: 12px;
   line-height: 15px;
   margin: 40px 0 0;
+}  
+.none{
+  display: none;
 }
-
-
-
-  </style>
+</style>
   <body>
-    <div class="firstbox">
-      <div class="circle"></div>
-      <header>
-         <a href="" class="logo"><img src="../images/logo.png" alt="here is logo"></a>
- <ul>
-  <li class="class"><a href="/home">Home</a></li>
-  <li class="class"><a href="/about">About us</a></li>
-  <li class="class"><a href="/contact">Contact us</a></li>
-  <li class="class"><a href="/team">Team</a></li>
-  <li class="class"><a href="/product">Products</a></li>
-  <li class="class"><a href="/account">Account</a></li>
-</ul></header>
-</div>
+    <header class="pheader">
+      <section class="flex">
+   
+         <a href="#home" class="logop"><img src="images/logo.png" alt=""></a>
+   
+         <nav class="navbar">
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="/product">Menu</a>
+            <a href="/team">Team</a>
+            <a href="/account">Account</a>
+         </nav>
+      </section>
+   </header>
     <main>
     
       <div class="box">
@@ -491,7 +510,7 @@ main.sign-up-mode .carousel {
           <!-- main div ( both forms ) -->
           <div class="forms-wrap">
             <!-- login form  -->
-            <form action="/account" method="post" autocomplete="off" class="sign-in-form" >
+            <form action="/account" method="post" autocomplete="off" class="sign-in-form" id="loginform">
       
               <div class="logo">
                 <img src="../images/logo.png" alt="logo" />
@@ -535,13 +554,62 @@ main.sign-up-mode .carousel {
 
                 <input type="submit" value="Sign In" class="sign-btn" />
 
-                <p class="text">
-                  Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in
-                </p>
+              
               </div>
             </form>
+            <p class="sign-in-form actual-form text">
+              <button id="bwork">Change Password?</button>
+            </p>
+          
 
+            <form action="/account_changepassword" method="post" autocomplete="off" class="sign-in-form none" id="changeform" >
+      
+              <div class="logo">
+                <img src="../images/logo.png" alt="logo" />
+              </div>
+
+              <div class="heading">
+                <h2>Welcome Back</h2>
+                <h6>Not registred yet?</h6>
+                <a href="#" class="toggle">Sign up</a>
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    name="pchangename"
+                    class="input-field"
+                    autocomplete="off"
+                   
+                  />
+                 
+                  <label>Username</label>
+                  <span id="username" class="error"> </span>
+                </div>
+
+                <div class="input-wrap">
+                
+                  <input
+                    type="password"
+                   id="passw"
+                   name="pchangepass"
+                    class="input-field"
+                    autocomplete="off"
+                    
+                  />
+                  
+                  <label>New Password</label>
+                 
+                </div>
+           
+
+                <input type="submit" value="Reset" class="sign-btn" />
+
+                
+              </div>
+            </form>
+          
 
 
 
@@ -597,11 +665,6 @@ main.sign-up-mode .carousel {
 
                 <input type="submit" value="Sign Up" class="sign-btn"/>
 
-                <p class="text">
-                  By signing up, I agree to the
-                  <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
-                </p>
               </div>
             </form>
           </div>
@@ -630,9 +693,31 @@ main.sign-up-mode .carousel {
         </div>
       </div>
     </main>
+   
 
+  </body>
+     
     <!-- Javascript file -->
 <script>
+const targetDivp = document.getElementById("loginform");
+const btnp = document.getElementById("changeform");
+const btnn = document.getElementById("bwork");
+btnn.onclick=()=> {
+  console.log('button clicked')
+  if(btnp.style.display=='none'){
+    btnp.style.display="flex"
+    targetDivp.style.display="none"
+  }
+  else{
+    targetDivp.style.display='flex';
+    btnp.style.display="none"
+  }
+ 
+};
+   
+
+
+
   //input field variable
 const inputs = document.querySelectorAll(".input-field");
 // for the signup button under welcome back
@@ -657,6 +742,11 @@ inputs.forEach((inp) => {
 toggle_btn.forEach((btn) => {
   btn.addEventListener("click", () => {
     main.classList.toggle("sign-up-mode");
+    if(btnn.style.display!='none'){
+    btnn.style.display='none';}
+    else{
+      btnn.style.display='block';
+    }
   });
 });
 
@@ -749,5 +839,4 @@ bullets.forEach((bullet) => {
 // }
 
 </script>
-  </body>
 </html>
