@@ -490,20 +490,6 @@ exports.renderreplypost = (req, res) => {
 
 
 
-// modules for testing 
-const findallcontacts=function (callback){
-exports.contactadmin = (req, res) => {
-  var query=`Select * from contactus`;
-  connection.query(query,(err,result)=>{
-    if(err) throw err;
-    else{
-      callback(result)
-    }
-  }) 
-};
-}
-
-
 
 const fs = require("fs");
 const puppeteer = require("puppeteer");
@@ -593,3 +579,67 @@ exports.scrapper = (req, res) => {
 
 
 //  module.exports={findallcontacts};
+
+
+
+
+
+
+exports.getcheckout=(req,res)=>{
+  if (req.session.username) {
+    var username=req.body.username;
+    var prodid=req.body.prodid;
+    var total=req.body.total;
+    var prodcount=req.body.prodcount;
+    var cartid=req.body.cartid;
+    var prodname=req.body.prodname;
+    var getuserdetails=`select * from account where username='${username}'`;
+    connection.query(getuserdetails,(err,result)=>{
+      if(err) throw err
+      else{
+      res.render('page/checkout',{username:username,prodid:prodid,total:total,prodcount:prodcount,cartid:cartid,email:result[0].email,cardno:result[0].cardno,cardname:result[0].cardname,cvv:result[0].cvv,prodname:prodname});
+      }
+    })
+  } else {
+    res.redirect("/account");
+  }
+  
+}
+
+
+exports.postcheckout=(req,res)=>{
+  if (req.session.username) {
+    var username=req.body.username;
+    var cardno=req.body.cardno;
+    var cardname=req.body.cardname;
+    var cvv=req.body.cvv;
+    var zip=req.body.zip;
+    var state=req.body.state;
+    var city=req.body.city;
+    var address=req.body.address;
+    var query=`select * from cart where username='${username}'`;
+    connection.query(query,(err,result)=>{
+      if(err) throw err
+      else{
+        result.forEach(element =>{
+             var insert=`insert into orderdetails(username,prodid,total,prodcount,cardno,cardname,cvv,zip,state,city,address,prodname) values ('${username}','${element.prodid}','${element.total}','${element.count}','${cardno}','${cardname}','${cvv}','${zip}','${state}','${city}','${address}','${element.prodname}')`;
+             connection.query(insert,(err)=>{
+              if(err)throw err;
+              var del=`delete from cart where username='${username}'`;
+              connection.query(del,(err)=>{
+                if(err) throw err;
+                else{
+                  console.log("done");
+                }
+              })
+             })
+        })
+        res.redirect('/userdash');
+      }
+    })
+ 
+  } else {
+    res.redirect("/account");
+  }
+  
+}

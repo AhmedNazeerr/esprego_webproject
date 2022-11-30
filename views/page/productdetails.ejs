@@ -457,16 +457,21 @@
               <li>Shipping Fee: <span>Free</span></li>
             </ul>
           </div>
-
+          <%if((data[0].prodinstock)>0){%>
           <div class="purchase-info">
             <form action="/addtocart" method="post">
-            <input type="number" min="1" value="1" max="10" name="count"/>
+            <input type="number" min="1" value="1" max="<%=data[0].prodinstock%>" name="count"/>
            <input type="hidden" name="prodid" value="<%=data[0].prodid%>">
             <button type="submit" class="btn">
               Add to Cart <i class="fas fa-shopping-cart"></i>
             </button>
           </form>
           </div>
+          <%} else {%>
+            <div class="purchase-info">
+              <h4>Out Of Stock</h4>
+            </div>
+            <%}%>
         </div>
       </div>
     </div>
