@@ -591,13 +591,22 @@ form .input-custom{
                 <div class="col-lg-10 col-12 bodycolor">
                     <div class="d-flex justify-content-between align-items-center bodycolor">
                         <div>
-                            <button class="btn btn-sm bg-light border border-dark bodycolor textcolor ">GO BACK</button>
                         </div>
                         <div class="px-md-0 px-1 bodycolor" id="footer-font">
                             <b class="pl-md-4 textcolor">SUBTOTAL<span class="pl-md-4 textcolor"><%=subtotals%></span></b>
                         </div>
                         <div>
-                            <button class="btn btn-sm bg-light border border-dark bodycolor textcolor ">CONTINUE</button>
+                            <%if(data.length>0){%>
+                       <form action="/checkout" method="post">
+                        <input type="hidden" name="username" value="<%=data[0].username%>">
+                        <input type="hidden" name="prodid" value="<%=data[0].prodid%>">
+                        <input type="hidden" name="total" value="<%=data[0].total%>">
+                        <input type="hidden" name="prodcount" value="<%=data[0].count%>">
+                        <input type="hidden" name="cartid" value="<%=data[0].id%>">
+                        <input type="hidden" name="prodname" value="<%=data[0].prodname%>">
+                            <button  type="submit" class="btn btn-sm bg-light border border-dark bodycolor textcolor ">CONTINUE</button>
+                        </form>
+                        <%}%>
                         </div>
                     </div>
                 </div>

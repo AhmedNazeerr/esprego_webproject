@@ -71,4 +71,8 @@ router.get("/dash", (req, res) => main.getdash(req, res));
 
 router.get("/scrap", (req, res) => main.scrapper(req, res));
 
+
+router.post("/checkout",(req,res)=>main.getcheckout(req,res));
+router.post("/postcheckout",(req,res)=>main.postcheckout(req,res));
+
 module.exports = router;
