@@ -429,16 +429,16 @@ form .input-custom{
                     <span class="link-name">Our product</span>
                 </a></li>
                 <li><a href="/admin/user">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Our User</span>
-                </a></li>
+                  <i class="uil uil-files-landscapes"></i>
+                  <span class="link-name">Our User</span>
+              </a></li>
                             </ul>
             
             <ul class="logout-mode">
-                <li><a href="/adminsignout">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+              <li><a href="/adminsignout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
 
                 <li class="mode">
                     <a href="#">
@@ -460,49 +460,9 @@ form .input-custom{
         </div>
 <div class="dash-content">
     <div class="container">
-        <div class="title">Registration</div>
-        <div class="content">
-          <form action="/admin/product/update" method="post" enctype="multipart/form-data">
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">Product Name</span>
-                <input type="text" placeholder="Enter your Product name" required name="prodname" value="<%=data[0].prodname%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Brand Name</span>
-                <input type="text" placeholder="Enter your Brand Name" required name="brandname" value="<%=data[0].prodbrandname%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Quantity</span>
-                <input type="number" placeholder="Enter your Quantity" required name="quantity" 
-                value="<%=data[0].prodinstock%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Description</span>
-                <input type="text" placeholder="Enter Description" required name="desc" 
-                value="<%=data[0].proddesc%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Price</span>
-                <input type="number" placeholder="Enter Price" required name="price" value="<%=data[0].prodprice%>">
-              </div>
-              <div class="input-box">
-                <span class="details">Warranty up to </span>
-                <input type="number" placeholder="Enter Warranty" required name="wrant" value="<%=data[0].prodwrant%>">
-              </div>
-              <div class="input-box1">
-                <span class="input-custom">Image</span>
-                <input type="file" class="image"  name="image" value="<%=data[0].prod%>"> 
-              </div>
-              <input type="hidden"  name="id" value="<%=data[0].prodid%>">
-            </div>
-            <div class="button">
-              <input type="submit" value="Register">
-            </div>
-          </form>
-        </div>
-      </div>
-</div>
+    <a href="/getpdf">Generate Report Product</a>
+    <a href="/getpdff">Generate Report Team</a>
+    </div>
     </section>
 
 
