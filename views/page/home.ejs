@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="home.css">
+   <title>Home</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* custom scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #846DCF; 
+  border-radius: 8px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #846DCF; 
+}
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'poppins',sans-serif;
+}
+:root{
+  /* this is for navbar */
+  --firstbox: white;
+  /* for about section */
+  --aboutsection:rgba(63,30,21,0.2);
+}
+.firstbox{
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  max-height: 95vh;
+  padding: 100px;
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+.firstbox header{
+  background-color: var(--firstbox);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+.firstbox header .logo{
+  position: relative;
+  max-width: 80px;
+}
+.firstbox header ul{
+  position: relative;
+  display: flex;
+}
+.firstbox header ul li{
+  list-style: none;
+}
+.firstbox header ul li a{
+  display: inline-block;
+  color: #333;
+  font-weight: 400;
+  margin-left: 40px;
+  text-decoration: none;
+}
+.firstbox .contents{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.firstbox .contents .textbox{
+  position: relative;
+  max-width: 600px;
+}
+.firstbox .contents .textbox h2{
+   color: #333;
+   font-size: 4em;
+   line-height: 1.4em;
+   font-weight: 500;
+}
+.firstbox.contents .textbox h2 span{
+  color: #846DCF;
+font-size: 1.2em;
+font-weight: 900;
+}
+.firstbox .contents .textbox p{
+  color: #333;
+}
+.firstbox .contents .textbox a{
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background-color: #846DCF;
+  color: #ffff;
+   border-radius:40px ;
+   font-weight: 500;
+   letter-spacing: 1px;
+   text-decoration: none;
+}
+.firstbox .contents .imgbox{
+  width: 600px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+  margin-top: 50px;
+}
+.firstbox .contents .imgbox img{
+  max-width: 340px;
+}
+.thumb{
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: flex;
+}
+.thumb li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.thumb li:hover{
+transform: translateY(-15px);
+}
+.thumb li img{
+  max-width: 50px;
+}
+.social{
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.social li{
+  list-style: none;
+}
+.social li a{
+  display: inline-block;
+  margin: 5px 0;
+  transform: scale(0.6);
+  filter: invert(1);
+}
+.circle{
+  position: absolute;
+top:0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: #846DCF;
+clip-path: circle(600px at right 800px);
+}
+.mtop{
+  margin-top: 10px;
+}
+.product {
+  text-align: center;
+  padding: 50px;
+}
+
+.product img {
+  width: 80%;
+  height: 80%;
+}
+.grid {
+  display: grid;
+  grid-gap: 20px;
+}
+.product .grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.product .flex {
+  justify-content: center;
+  margin: 5px;
+}
+
+.product .flex i {
+  margin: 5px;
+  font-size: 12px;
+  color: #f4c402;
+}
+
+.product h5,
+.product h4 {
+  font-weight: 800;
+  font-size: 17px;
+  margin: 5px;
+}
+
+.product h5 {
+  color:  #846DCF;
+}
+.shopnow{
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background-color: #846DCF;
+  color: #ffff;
+   border-radius:40px ;
+   font-weight: 500;
+   letter-spacing: 1px;
+   text-decoration: none; 
+}
+.shopnow:hover{
+  text-decoration: none;
+  color: white;
+}
+.staticimage{
+  width: 100%;
+  height: 70vh;
+  background-image: url(images/w2.jpg);
+}
+.aboutus{
+  width: 100%;
+  height: 80vh;
+  background-color: white;
+}
+.aboutus h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 17px;
+  margin: 5px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #846DCF;
+}
+.aboutus h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 2.5empx;
+  margin: 5px;
+}
+.aboutus .varr{
+  margin-top: 20px;
+  background-color: white;
+  width: 80%;
+  height: 65vh;
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.varr .row{
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+.varr .row1{
+  margin-left: 20px;
+}
+.varr .row1,.row2,.row3{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.varr .imgabout{
+  width: 100%;
+  height: 100%;
+}
+
+.tempbtn{
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background-color: #846DCF;
+  color: #ffff;
+   border-radius:40px ;
+   font-weight: 500;
+   letter-spacing: 1px;
+   text-decoration: none; 
+}
+.tempbtn:hover{
+  text-decoration: none;
+  color: white;
+}
+
+
+.footer {
+  max-height: 60vh;
+  width: 100%;
+  background-color: #846DCF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+ 
+}
+.footer a{
+  text-decoration: none;
+  color: white;
+}
+.footer .logo {
+  color: white;
+}
+
+.footer-navigation {
+  color: white;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.footer-navigation span{
+  padding: 8px;
+  cursor: pointer;
+}
+
+.footer-navigation span:hover {
+  color: white;
+}
+
+.footer .social-media {
+  margin-top: 30px;
+}
+
+.social-media img {
+  padding: 4px;
+}
+
+</style>
+<body>
+   <section class="firstbox">
+      <div class="circle"></div>
+      <header>
+         <a href="" class="logo"><img src="../images/logo.png" alt="here is logo"></a>
+         <!-- navbar start -->
+<ul>
+   <li class="class"><a href="/home">Home</a></li>
+   <li class="class"><a href="/about">About us</a></li>
+   <li class="class"><a href="/contact">Contact us</a></li>
+   <li class="class"><a href="">Reviews</a></li>
+   <li class="class"><a href="">Store</a></li>
+   <li class="class"><a href="">Account</a></li>
+</ul>
+
+         <!-- navbar ends -->
+      </header>
+      <div class="contents">
+         <div class="textbox">
+            <h2>Lorem ipsum <br> <span>Lorem</span></h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum saepe cum ex perspiciatis a aspernatur!</p>
+            <a href="about.html">Learn more</a>
+         </div>
+         <div class="imgbox">
+            <img src="images/img1.png"class="temp" alt="">
+         </div>
+      </div>
+      <ul class="thumb">
+         <li><img src="images/thumb1.png" onclick="imgsli('images/img1.png'); cccolor('#846DCF')" alt=""></li>
+         <li><img src="images/thumb2.png" onclick="imgsli('images/img2.png'); cccolor('#846DCF')" alt=""></li>
+         <li><img src="images/thumb3.png" onclick="imgsli('images/img3.png'); cccolor('#846DCF')" alt=""></li>
+      </ul>
+      <ul class="social">
+         <li><a href=""><img src="images/facebook.png" alt=""></a></li>
+         <li><a href=""><img src="images/twitter.png" alt=""></a></li>
+         <li><a href=""><img src="images/instagram.png" alt=""></a></li>
+      </ul>
+   </section>
+   
+  <section class="product mtop">
+   <div class="heading">
+     <h5>Online Store </h5>
+     <h2>Featured Products</h2>
+   </div>
+
+   <div class="content grid mtop">
+     <div class="box">
+       <div class="img">
+         <img src="images/p1.jpg" alt="">
+       </div>
+       <div class="text">
+         <div class="rate flex">
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+         </div>
+         <h4>Peru Whole Bean</h4>
+         <h5>$42.49</h5>
+       </div>
+     </div>
+     <div class="box">
+       <div class="img">
+         <img src="images/p2.jpg" alt="">
+       </div>
+       <div class="text">
+         <div class="rate flex">
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+         </div>
+         <h4>Peru Whole Bean</h4>
+         <h5>$42.49</h5>
+       </div>
+     </div>
+     <div class="box">
+       <div class="img">
+         <img src="images/p3.jpg" alt="">
+       </div>
+       <div class="text">
+         <div class="rate flex">
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+         </div>
+         <h4>Peru Whole Bean</h4>
+         <h5>$42.49</h5>
+       </div>
+     </div>
+     <div class="box">
+       <div class="img">
+         <img src="images/p4.jpg" alt="">
+       </div>
+       <div class="text">
+         <div class="rate flex">
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+         </div>
+         <h4>Peru Whole Bean</h4>
+         <h5>$42.49</h5>
+       </div>
+     </div>
+   </div>
+  <a href="#" class="shopnow">Shop Now</a>
+ </section>
+   
+ <section class="staticimage">
+
+ </section>
+
+ <section class="aboutus">
+   <div class="heading">
+      <h5>About us </h5>
+      <h2>Serving Since 2010</h2>
+    </div>
+   <div class="varr">
+    <div class="row">
+      <div class="row1">
+          <h1 class="mb-3">Our Story</h1>
+          <h5 class="mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea</h5>
+          <p>Takimata sed vero vero no sit sed, justo clita duo no duo amet et, nonumy kasd sed dolor eos diam lorem eirmod. Amet sit amet amet no. Est nonumy sed labore eirmod sit magna</p>
+      </div>
+      <div class="row2" style="max-height: 500px;">
+          <div class="position-relative h-100">
+              <img class="imgabout" src="images/about.png" style="object-fit: cover;">
+          </div>
+      </div>
+      <div class="row3">
+          <h1 class="mb-3">Our Vision</h1>
+          <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
+          <a href="about.html" class="tempbtn">Learn More</a>
+      </div>
+  </div>
+   </div>
+
+ </section>
+ <div class="footer">
+  <div>
+      <img class="logo" src="images/logo.png">
+  </div>
+  <div class="footer-navigation">
+      <span> <a href="home.html">Home</a>  </span>
+      <span> <a href="about.html">About</a>  </span>
+      <span> <a href="contact.html">Contact us</a>  </span>
+      <span> <a href="">Reviews</a>  </span>
+      <span> <a href="">Store</a>  </span>
+      <span> <a href="">Account</a>  </span>
+  </div>
+  <div class="social-media">
+      <img src="../images/facebook.png">
+      <img src="../images/instagram.png">
+      <img src="../images/twitter.png">
+  </div>
+</div>
+   <script  src="home.js"></script>
+   <script>
+    function imgsli(anything)
+{
+document.querySelector('.temp').src=anything;
+}
+function cccolor(color){
+    const circl=document.querySelector('.circle');
+    circl.style.background=color;
+}
+
+   </script>
+</body>
+</html>

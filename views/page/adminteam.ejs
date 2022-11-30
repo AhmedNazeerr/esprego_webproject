@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+    <title></title>
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!--<title>Admin Dashboard Panel</title>--> 
+</head>
+<style>
+    /* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --primary-color: white;
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    
+    /* ====== Transition ====== */
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--primary-color);
+}
+body.dark{
+    --primary-color: #3A3B3C;
+    --panel-color: #242526;
+    --text-color: #CCC;
+    --black-light-color: #CCC;
+    --border-color: #4D4C4C;
+    --toggle-color: #FFF;
+    --box1-color: #3A3B3C;
+    --box2-color: #3A3B3C;
+    --box3-color: #3A3B3C;
+    --title-icon-color: #CCC;
+}
+/* === Custom Scroll Bar CSS === */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+/* ::-webkit-scrollbar-thumb:hover {
+     background: #0b3cc1; 
+} */
+
+body.dark::-webkit-scrollbar-thumb:hover,
+body.dark .activity-data::-webkit-scrollbar-thumb:hover{
+    background: #3A3B3C;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    border-right: 1px solid var(--border-color);
+    transition: var(--tran-05);
+}
+nav.close{
+    width: 73px;
+}
+nav .logo-name{
+    display: flex;
+    align-items: center;
+}
+nav .logo-image{
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+}
+nav .logo-image img{
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+nav .logo-name .logo_name{
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 14px;
+    transition: var(--tran-05);
+}
+nav.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+nav .menu-items{
+    margin-top: 40px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menu-items li{
+    list-style: none;
+}
+.menu-items li a{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    position: relative;
+}
+.nav-links li a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+body.dark li a:hover:before{
+    background-color: var(--text-color);
+}
+.menu-items li a i{
+    font-size: 24px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black-light-color);
+}
+.menu-items li a .link-name{
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--black-light-color);    
+    transition: var(--tran-05);
+}
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+}
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: var(--primary-color);
+}
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+    color: var(--text-color);
+}
+.menu-items .logout-mode{
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+.menu-items .mode{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.menu-items .mode-toggle{
+    position: absolute;
+    right: 14px;
+    height: 50px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.mode-toggle .switch{
+    position: relative;
+    display: inline-block;
+    height: 22px;
+    width: 40px;
+    border-radius: 25px;
+    background-color: var(--toggle-color);
+}
+.switch:before{
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px;
+    background-color: var(--panel-color);
+    border-radius: 50%;
+    transition: var(--tran-03);
+}
+body.dark .switch:before{
+    left: 20px;
+}
+.dashboard{
+    position: relative;
+    left: 250px;
+    background-color: var(--panel-color);
+    /* min-height: 100vh; */
+    width: calc(100% - 250px);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+    height: 100vh;
+}
+nav.close ~ .dashboard{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+.dashboard .top{
+    position: fixed;
+    top: 0;
+    left: 250px;
+    display: flex;
+    width: calc(100% - 250px);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    transition: var(--tran-05);
+    z-index: 10;
+}
+nav.close ~ .dashboard .top{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+.dashboard .top .sidebar-toggle{
+    font-size: 26px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+.dashboard .dash-content{
+    padding-top: 50px;
+    margin-bottom: 100px;
+    width: 100%;
+    background-color:var(--panel-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.dash-content .title{
+    display: flex;
+    align-items: center;
+    margin: 60px 0 30px 0;
+}
+.margin{
+  margin: 10px;
+}
+.image{
+ object-fit: cover;
+}
+.contener {
+    float: left;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 320px;
+    height: 470px;
+    overflow: hidden;
+    background:var(--panel-color);
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 #00000073;
+    transition: all 0.3s;
+}
+
+.contener:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 11px 14px rgb(0 0 0 / 25%), 0 8px 20px rgb(0 0 0 / 10%);
+}
+
+.image-contener {
+    display: block;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.image-contener img {
+    width: 100%;
+}
+
+.meta-contener {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 110px;
+    padding: 10px 20px;
+}
+
+.meta-contener .title {
+    padding: 0;
+    margin: 10px 0;
+    font-size: 22px;
+    color: var(--text-color);
+}
+
+.meta-contener .desc {
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.button-contener {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    text-align: center;
+    height: 40px;
+    margin: 2px;
+}
+
+.button-contener .button {
+    width: 100%;
+    padding: 6px 0;
+    text-decoration: none;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.button-contener .button:hover {
+    padding-left: 15px;
+}
+
+</style>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <!--<img src="images/logo.png" alt="">-->
+            </div>
+
+            <span class="logo_name">Admin Panel</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dahsboard</span>
+                </a></li>
+                <li><a href="/admin/team/add">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Add new member</span>
+                </a></li>
+                <li><a href="/admin/team">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Our Team</span>
+                </a></li>
+                <li><a href="/admin/product/add">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Add product</span>
+                </a></li>
+                <li><a href="/admin/product">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Our product</span>
+                </a></li>
+                            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>  
+        </div>
+<div class="dash-content">
+    <%if(data.length > 0){
+    
+      data.forEach(function(data){
+   %> 
+   <div class="contener">
+            <div class="image-contener">
+                <img src="../images/<%=data.imgpath%>" alt="">
+            </div>
+            <div class="meta-contener">
+                <h2 class="title"><%=data.workerfname%> <%=data.wrokerlname%></h2>
+                <span class="desc"><b>EMAIL :</b><%=data.email%></span>
+                <span class="desc"><b>ID :</b><%=data.workerid%></span>
+            </div>
+            <div class="button-contener">
+                <a href="/admin/team/update?id=<%= data.workerid %>" class="button">Update →</a>
+            </div>
+            <div class="button-contener">
+                <a href="/admin/team/delete/<%= data.workerid %>" class="button">Delete →</a>
+            </div>
+        </div>
+    <%
+                                });
+                            }
+                            %>
+</div>
+    </section>
+
+    <script>
+        const body = document.querySelector("body"),
+      modeToggle = body.querySelector(".mode-toggle");
+      sidebar = body.querySelector("nav");
+      sidebarToggle = body.querySelector(".sidebar-toggle");
+
+let getMode = localStorage.getItem("mode");
+if(getMode && getMode ==="dark"){
+    body.classList.toggle("dark");
+}
+
+let getStatus = localStorage.getItem("status");
+if(getStatus && getStatus ==="close"){
+    sidebar.classList.toggle("close");
+}
+
+modeToggle.addEventListener("click", () =>{
+    body.classList.toggle("dark");
+    if(body.classList.contains("dark")){
+        localStorage.setItem("mode", "dark");
+    }else{
+        localStorage.setItem("mode", "light");
+    }
+});
+
+sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+    if(sidebar.classList.contains("close")){
+        localStorage.setItem("status", "close");
+    }else{
+        localStorage.setItem("status", "open");
+    }
+})
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="contact.css" />
+    <script src="contact.js" defer></script>
+</head>
+<style>
+    *,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Poppins';
+    font-size: 22px;
+}
+
+.container {
+    background-color: black;
+    color: white;
+    overflow: auto;
+}
+
+nav {
+    float: right;
+}
+
+.logo img {
+    padding-top: 15px;
+}
+
+nav {
+    padding-top: 35px;
+}
+
+ul li {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    font-family: raleway;
+    color: white;
+}
+ul li a{
+   text-decoration: none;
+   color:white
+}
+ul li a:hover {
+    color: rgb(137, 36, 137);
+}
+ul li:hover {
+    color: rgb(137, 36, 137);
+}
+
+.mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url(img/backg.jpg);
+    width: 100%;
+    height: 400px;
+    background-color: black;
+    overflow: hidden;
+    opacity: 0.8;
+}
+
+.display-middle {
+    text-align: center;
+    padding-top: 170px;
+}
+
+.middle {
+    height: 200px;
+    text-align: center;
+    padding-top: 70px;
+    background-color: rgb(93, 8, 109);
+}
+
+.bg {
+    background: rgb(32,3,29);
+    background: radial-gradient(circle, rgb(32, 2, 29) 36%, rgba(0,0,0,1) 100%);
+}
+
+.leftContainer {
+    padding-top: 50px;
+    height: 300px;
+    width: 50%;
+    text-align: center;
+}
+
+.leftContainer p {
+    font-size: 10px;
+}
+
+.btn {
+    padding: 0.75rem;
+    margin-top: 29px;
+    display: block;
+    text-decoration: none;
+    background-color: rgb(62, 4, 55);
+    color: white;
+    text-align: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 220px;
+}
+
+.btn:hover {
+    border-color: white;
+    background-color: rgb(28, 17, 12);
+}
+
+.map-img {
+    background-image: url(img/maps.png);
+    ;
+}
+
+.heading{
+    text-align: center;
+    padding-top: 160px;
+}
+</style>
+<body>
+    <div class="container">
+        <span class="logo">
+         <img src="./img/logo.png" alt="main-logo" width="130" />
+         </span>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">about us</a></li>
+                <li>Products</li>
+                <li>Menu</li>
+                <li><a href="contact.html">Contact us</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr />
+    <div class="">
+        <!-- contact us background image -->
+        <header class="bgimg" id="contact">
+            <div class=" heading">
+                <span class="text-white" style="font-size:60px" >Contact Us</span>
+            </div>
+        </header>
+        <!-- get in touch -->
+        <div class="row text-center pb-4 bg" style="margin-right: 0px;">
+            <h2 class="pt-5">Get In Touch With Us</h2>
+            <p>Please contact us using the information below. To locate contacts in the business <br> office closest to you, visit our official website.</p>
+        </div>
+        <div class="row pb-4 bg" style="margin-right: 0px;">
+            <div class="col-lg-4">
+                <img src="./img/location.png " alt="location " width="90" style="margin-left: 160px; " />
+                <h4 class="text-center pt-2">Location</h4>
+                <p class="text-center ">2C 1/A1 Downtown, New York,<br>United States.</p>
+            </div>
+            <div class="col-lg-4 pt-3">
+                <img src="./img/call.png " alt="call " width="50" style="margin-left: 180px" />
+                <h4 class="text-center pt-2">Contact Us</h4>
+                <p class="text-center">(+1)2020 3990 00456 <br>(+1)2020 3990 00456</p>
+            </div>
+            <div class="col-lg-4">
+                <img src="./img/mail.png " alt="mail" width="70" style="margin-left: 170px" />
+                <h4 class="text-center">Send Us</h4>
+                <p class="text-center">info@esprego.com<br>complaint@esprego.com</p>
+            </div>
+        </div>
+    </div>
+    <!-- form -->
+    <div class="row">
+
+
+
+        <div class="col-lg-6 text-center pt-5 pb-5">
+            <h3>Drop Us A Line</h3>
+            <p>Whether you have a question about features, <br> trials, pricing,need a demo, or anything else, our <br> team is ready to answer.</p>
+            <section class="pt-4">
+                <div>
+                    <div>
+                        <textarea class="rounded p-3" rows="4 " cols="42 " name="comment " form="usrform" placeholder="Your Message"></textarea>
+                    </div>
+                    <div class="pt-2">
+                        <input class="rounded p-3" type="text " name="name " id="name" placeholder="Name" style="width: 502px;height: 40px; ">
+                    </div>
+                    <div class="pt-2">
+                        <input class="rounded p-3" type="text " name="mail " id="mail " placeholder="Email" style="width: 502px;height: 40px;">
+                    </div>
+                </div>
+
+
+            </section>
+            <input type=" " class="btn btn-next width-50 " name="submit " value="Submit " />
+        </div>
+
+
+        <div class="col-lg-6 map-img" style="padding-right: 0px;">
+        </div>
+    </div>
+    </div>
+    <script>
+        const nextBtns = document.querySelectorAll(".btn-next");
+
+function validation()
+{
+    var msg = document.getElementById('msg').value;
+    var name = document.getElementById('name').value;
+    var mail = document.getElementById('mail').value;
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if(msg == ""){
+        document.getElementById('fnameError').innerHTML ="Please fill the first name field";
+        return false;
+    }
+    if((msg.length <= 2) || (fname.length > 200)) {
+        document.getElementById('msgError').innerHTML ="The max length is 200";
+        return false;
+    }
+    if(name == ""){
+        document.getElementById('nameError').innerHTML ="Please fill the name field";
+        return false;
+    }
+    if((name.length <= 2) || (name.length > 20)) {
+        document.getElementById('nameError').innerHTML ="The max length is 20";
+        return false;
+    }
+    if (mail.value.match(validRegex)) 
+    {
+        return true;
+    } 
+    else 
+    {
+        document.getElementById('mailError').innerHTML ="Email is not correct";
+        return false;
+    }
+
+}
+    </script>
+</body>
+
+</html>

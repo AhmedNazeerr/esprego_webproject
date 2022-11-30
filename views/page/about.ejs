@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="about.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* custom scroll bar */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey; 
+    border-radius: 10px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #846DCF; 
+    border-radius: 8px;
+  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #846DCF; 
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+:root{
+    /* this is for navbar */
+    --firstbox: white;
+    /* for about section */
+    --aboutsection:rgba(63,30,21,0.2);
+  }
+  .firstbox{
+    position: relative;
+    width: 100%;
+    min-height: 0vh;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    background-color: white;
+  }
+  .firstbox header{
+    background-color: var(--firstbox);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+  }
+  .firstbox header .logo{
+    position: relative;
+    max-width: 80px;
+  }
+  .firstbox header ul{
+    position: relative;
+    display: flex;
+  }
+  .firstbox header ul li{
+    list-style: none;
+  }
+  .firstbox header ul li a{
+    display: inline-block;
+    color: #333;
+    font-weight: 400;
+    margin-left: 40px;
+    text-decoration: none;
+  }
+
+.banner {
+    height: 70vh;
+    min-height: 600px;
+    background-image: url('images/mainframe.jpg');
+    background-position: center bottom;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    flex-grow: 1;
+    color: white;
+    font-weight: bold;
+}
+
+.arrow {
+    margin-top: 60px;
+}
+
+.section1{
+    display: flex;
+    max-width: 100%;
+    max-height: 70vh;
+}
+
+.section1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section1 .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section1 .text-container {
+    width: 70%;
+}
+.left h1 {
+    font-size: 40px;
+    margin-bottom: 16px;
+}
+
+.left p {
+    color: #848391;
+    line-height: 1.8;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 16px;
+}
+
+.left .button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.left div img {
+    width: 150px;
+}
+
+.left, .right {
+    flex: 1;
+}
+
+.left img, .right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.footer {
+    max-height: 60vh;
+    width: 100%;
+    background-color: #846DCF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+   
+}
+.footer a{
+    text-decoration: none;
+    color: white;
+}
+.footer .logo {
+    color: white;
+}
+
+.footer-navigation {
+    color: white;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.footer-navigation span{
+    padding: 8px;
+    cursor: pointer;
+}
+
+.footer-navigation span:hover {
+    color: white;
+}
+
+.footer .social-media {
+    margin-top: 30px;
+}
+
+.social-media img {
+    padding: 4px;
+}
+
+</style>
+<body>
+   
+        <div class="firstbox">
+        <div class="circle"></div>
+        <header>
+           <a href="" class="logo"><img src="images/logo.png" alt="here is logo"></a>
+           <!-- navbar start -->
+  <ul>
+     <li class="class"><a href="home.html">Home</a></li>
+     <li class="class"><a href="about.html">About us</a></li>
+     <li class="class"><a href="contact.html">Contact us</a></li>
+     <li class="class"><a href="">Reviews</a></li>
+     <li class="class"><a href="">Store</a></li>
+     <li class="class"><a href="">Account</a></li>
+  </ul></header>
+</div>
+<div class="wrapper">
+        <div class="banner">
+            <div class="main">
+                <span class="text">Lorem, ipsum.</span>
+                <img class="arrow" src="https://i.ibb.co/MSv2H70/arrow.png">
+            </div>
+        </div>
+        <div class="section1">
+            <div class="left">
+                <div class="text-container">
+                    <h1>Lorem, ipsum dolor.</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, nesciunt illum! Tempore consequuntur sunt quo..</p>
+                </div>
+            </div>
+            <div class="right">
+                <img src="images/firstone.jpg">
+            </div>
+        </div>
+        <div class="section1">
+            <div class="right">
+                <img src="images/secondone.jpg">
+            </div>
+            <div class="left">
+                <div class="text-container">
+                    <h1>Lorem, ipsum dolor.</h1>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit repellat consectetur vero. Ipsa, voluptas hic..</p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer">
+            <div>
+                <img class="logo" src="images/logo.png">
+            </div>
+            <div class="footer-navigation">
+                <span> <a href="home.html">Home</a>  </span>
+                <span> <a href="about.html">About</a>  </span>
+                <span> <a href="contact.html">Contact us</a>  </span>
+                <span> <a href="">Reviews</a>  </span>
+                <span> <a href="">Store</a>  </span>
+                <span> <a href="">Account</a>  </span>
+            </div>
+            <div class="social-media">
+                <img src="images/facebook.png">
+                <img src="images/instagram.png">
+                <img src="images/twitter.png">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
