@@ -11,24 +11,24 @@ exports.login = (req, res) => {
     connection.query(addingdataquery, (err, row) => {
       if (err) throw err;
       if (row.length && bcrypt.compareSync(ppass, row[0].password)) {
-        const mailOptions = {
-          from: "esprego.coffe@gmail.com",
-          to: row[0].email,
-          subject: "Verification",
-          text: `Verify your credentials code : ${row[0].otp}`,
-        };
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Email sent: " + info.response);
+        // const mailOptions = {
+        //   from: "esprego.coffe@gmail.com",
+        //   to: row[0].email,
+        //   subject: "Verification",
+        //   text: `Verify your credentials code : ${row[0].otp}`,
+        // };
+        // transporter.sendMail(mailOptions, function (error, info) {
+        //   if (error) {
+        //     console.log(error);
+        //   } else {
+        //     console.log("Email sent: " + info.response);
             res.render("page/verify_login", {
               data: row[0].otp,
               uname: row[0].username,
               urole: row[0].role,
             });
-          }
-        });
+        //   }
+        // });
       } else {
         console.log("data not present");
         res.redirect("/account");
@@ -57,6 +57,7 @@ exports.login = (req, res) => {
               console.log(error);
             } else {
               console.log("Email sent: " + info.response);
+
               res.render('page/verify_changep',{data:pppass,data1:num4,data2:pppname})
             }
             })
@@ -103,42 +104,43 @@ console.log('error in update occur')
   exports.getverifylogin = (req, res) => {
     var code_1 = req.body.code_1;
     var code_2 = req.body.code_2;
-    if (code_1 == code_2) {
+    // if (code_1 == code_2) {
       req.session.username = req.body.code_3;
       req.session.role = req.body.code_4;
-      var num4 = generateCode();
+      // var num4 = generateCode();
       if (req.session.role == "admin") {
-        var query = "update account set otp=? where username=?";
-        var data = [num4, req.body.code_3];
-        connection.query(query, data, (err) => {
-          if (!err) {
-            res.redirect("/admin/team");
-            console.log(req.session);
-          } else {
-            console.log("error in update getverify_login");
-          }
-        });
+        // var query = "update account set otp=? where username=?";
+        // var data = [num4, req.body.code_3];
+        // connection.query(query, data, (err) => {
+        //   if (!err) {
+        //     res.redirect("/admin/team");
+        //     console.log(req.session);
+        //   } else {
+        //     console.log("error in update getverify_login");
+        //   }
+        // });
       } else {
-        var query = "update account set otp=? where username=?";
-        var data = [num4, req.body.code_3];
-        connection.query(query, data, (err) => {
-          if (!err) {
-            console.log(req.session);
-            res.redirect("/user");
-          } else {
-            console.log("error in update getverify_login");
-          }
-        });
+        // var query = "update account set otp=? where username=?";
+        // var data = [num4, req.body.code_3];
+        // connection.query(query, data, (err) => {
+        //   if (!err) {
+        //     console.log(req.session);
+            res.redirect("/user_account");
+        //   } else {
+        //     console.log("error in update getverify_login");
+        //   }
+        // });
       }
-    } else {
-      console.log("invalid verification code");
-      res.render("page/verify_login", {
-        data: req.body.code_2,
-        uname: req.body.code_3,
-        urole: req.body.code_4,
-      });
+  //   } else {
+  //     console.log("invalid verification code");
+  //     res.render("page/verify_login", {
+  //       data: req.body.code_2,
+  //       uname: req.body.code_3,
+  //       urole: req.body.code_4,
+  //     });
+  //   }
+  // };
     }
-  };
   
   function generateCode() {
     var minm = 100000;
@@ -183,6 +185,7 @@ console.log('error in update occur')
                     val2: registeremail,
                     val3: hashedpassword,
                   });
+
                 }
               });
             }
@@ -234,7 +237,14 @@ console.log('error in update occur')
         res.redirect("/account");
       } else {
         console.log(req.session);
-        res.render("page/userloggedin", { data: req.session.username });
+        query=`select * from account where username='${req.session.username}'`
+        connection.query(query,(err,result)=>{
+          if(err) throw err
+          else{
+            res.redirect("/userdash");
+          }
+        })
+        
       }
     }
   };

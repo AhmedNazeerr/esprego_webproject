@@ -639,11 +639,12 @@ input[type="range"]::-moz-range-thumb{
           data.forEach(function(data){
        %> 
           <div class = "item">
+            <a  href="/productdetail/<%= data.prodid %>"class = "item-name">
               <div class = "item-img">
                   <img src = "../images/<%=data.prodimg%>">
               </div>
               <div class = "item-detail">
-                  <a  href="/productdetail/<%= data.prodid %>"class = "item-name"><%=data.prodname%></a>
+                <a  href="/productdetail/<%= data.prodid %>"class = "item-name"> <%=data.prodname%></a>
                   <div class = "item-price">
                       <span class = "new-price">$<%=data.prodprice%></span>
                       <span class = "old-price">$<%=data.prodprice%></span>
@@ -652,6 +653,7 @@ input[type="range"]::-moz-range-thumb{
                   <p>Best Before <%=data.prodwrant%> year</p>
                   <button type = "button" class = "add-btn">add to cart</button>
               </div>
+            </a>
           </div>
           <%
                           });
