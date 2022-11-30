@@ -17,11 +17,12 @@
 
     />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
   <style>
-    /* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"); */
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
 
     * {
       box-sizing: border-box;
@@ -31,11 +32,16 @@
     }
     body {
       line-height: 1.5;
+      overflow-x: hidden; /* Hide horizontal scrollbar */
     }
     .card-wrapper {
-      max-width: 1100px;
+      min-height: 60vh;
+      width: 100vw;
       margin: 0 auto;
       overflow: hidden;
+      width: 100vw;
+      border: 0px;
+      padding-bottom: 10px;
     }
     img {
       width: 100%;
@@ -68,7 +74,7 @@
       opacity: 0.8;
     }
     .product-content {
-      padding: 2rem 1rem;
+      /* padding: 0rem rem; */
       margin-top: 0px;
     }
     .product-title {
@@ -205,17 +211,20 @@
       color: #fff;
     }
 
-    @media screen and (min-width: 992px) {
+    @media screen {
       .card {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1.5rem;
+        margin-bottom: 18px;
       }
       .card-wrapper {
-        height: 100vh;
+        min-height: 60vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        min-width: 100vw;
+        overflow:hidden;
       }
       .product-imgs {
         display: flex;
@@ -223,7 +232,7 @@
         justify-content: center;
       }
       .product-content {
-        padding-top: 0;
+        padding-top: 10vh;
       }
     }
     /* }
@@ -303,6 +312,9 @@
 .panel-body {
     padding: 25px 20px;
 }
+.panel-body input{
+  margin-bottom: 11px;
+}
 
 
 .media-block .media-left {
@@ -375,6 +387,17 @@
     margin-top: 15px;
 }
 
+.padding{
+  padding-top: 5px;
+  margin-left: 10px;
+  text-transform: capitalize;
+  font-weight: 100;
+}
+.style{
+  font-size: 18px;
+    font-weight: 600;
+}
+
   </style>
 
   <body>
@@ -436,25 +459,34 @@
           </div>
 
           <div class="purchase-info">
-            <input type="number" min="0" value="1" />
-            <button type="button" class="btn">
+            <form action="/addtocart" method="post">
+            <input type="number" min="1" value="1" max="10" name="count"/>
+           <input type="hidden" name="prodid" value="<%=data[0].prodid%>">
+            <button type="submit" class="btn">
               Add to Cart <i class="fas fa-shopping-cart"></i>
             </button>
+          </form>
           </div>
         </div>
       </div>
     </div>
-
     <div class="container bootdey">
+     
+      <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
+        <h4 class="font-cond-l fg-accent lts-md mgb-10" contenteditable="false">Not Yet Convinced?</h4>
+        <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
+   
+    </div>
     <div class="col-md-12 bootstrap snippets">
         <%if(temp==1){%>
     <div class="panel">
       <div class="panel-body size">
         <form action="/add_rev"class="panel-body" method="post">
         <input type="text"class="form-control"id="size" name="rev" rows="2" placeholder="Enter Your Review">
+        <input type="number"class="form-control"id="size" min="1" max="5" name="star" rows="2" placeholder="give Stars">
         <input type="hidden"name="username" value="<%=user%>">
         <input type="hidden" name="prodid"value="<%=data[0].prodid%>">
-            <input type="submit" class=" panel-body btn btn-sm btn-primary pull-right " value="Add">
+            <input type="submit" class=" panel-body btn btn-sm btn-primary pull-right" value="Add">
           <!-- <button class="btn btn-sm btn-primary pull-right " type="submit"><i class="fa fa-pencil fa-fw"></i> Add</button> -->
       </div>
     </form>
@@ -469,14 +501,37 @@
             rev.forEach(function(rev){
          %> 
         <div class="media-block">
-       <img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+        <img class="rounded-circle shadow-4-strong img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png">
           <div class="media-body">
-            <div class="mar-btm">
-              <p><%=rev.username%></p>
-            </div>
-            <p><%=rev.review%></p>
+            <% if (rev.star == 1) { %>
+              <span class="fa fa-star checked"></span>
+<%} else if(rev.star == 2) { %>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <%} else if(rev.star == 3) { %>
+    <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <%} else if(rev.star == 4) { %>
+    <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <%} else if(rev.star == 5) { %>
+        <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <% } %>
+
+              <p class="style"><%=rev.username%></p>
+
+              <div class="padding">
+                <p><%=rev.review%></p>
+                </div>
             <div class="pad-ver">
-              <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+              <a class="btn btn-sm btn-default btn-hover-primary" href="/reply/<%=rev.username%>/<%=rev.prodid%>/<%=rev.id%>">Reply</a>
             </div>
             <hr>
             <%for(var i=0;i<comment.length;i++){
@@ -485,25 +540,15 @@
             <div>
              
               <div class="media-block" style="margin-left: 30px;">
-                <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png"></a>
+                  <img class="rounded-circle shadow-4-strong img-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png">
                 <div class="media-body" >
-                  <div class="mar-btm">
-                    <p>Bobby Marz</p>
-                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> - From Mobile - 7 min ago</p>
-                  </div>
-                  <p>Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                  <div class="pad-ver">
-                    <div class="btn-group">
-                      <a class="btn btn-sm btn-default btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
-                      <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
-                    </div>
-                    <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-                  </div>
+                    <p class="style"><%=comment[i].username %></p>
+                   <div class="padding">
+                        <p><%=comment[i].reply%></p>
+                   </div>
                   <hr>
                 </div>
-              </div>
-        
-
+                </div>
             </div>
             <%
                    }

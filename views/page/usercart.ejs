@@ -11,8 +11,8 @@
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-
-    <!--<title>Admin Dashboard Panel</title>--> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css">
+   
 </head>
 <style>
     /* ===== Google Font Import - Poppins ===== */
@@ -392,13 +392,102 @@ form .input-custom{
   input .image{
     margin: 10px;
   }
-  .updateimgcontainer{
-    width: 300px;
-    height: 300px;
-  }
-  .updateimgcontainer img{
-    width: 100%;
-  }
+
+.footer-background{
+    background-color: rgb(204, 199, 199);
+}
+
+
+
+.footer-background{
+    background-color: rgb(204, 199, 199);
+}
+
+@media(max-width:991px){
+    #heading{
+        padding-left: 50px;
+        /* padding-left: 2rem!important; */
+    }
+    #prc{
+        margin-left: 70px;
+        padding-left: 110px;
+    }
+    #quantity{
+        padding-left: 48px;
+    }
+    #produc{
+        /* padding-left: 60px;
+         */
+         padding-left: 2rem!important;
+        /* padding-left: 2rem!important; */
+    }
+    #total{
+        padding-left: 54px;
+    }
+}
+@media(max-width:767px){
+    .mobile{
+        font-size: 10px;
+    }
+    h5{
+        font-size: 14px;
+    }
+    h6{
+        font-size: 9px;
+    }
+    #mobile-font{
+        font-size: 11px;
+    }
+    #prc{
+        font-weight: 700;
+        margin-left: -45px;
+        padding-left: 105px;
+    }
+    #quantity{
+        font-weight: 700;
+        padding-left: 6px;
+    }
+    #produc{
+        font-weight: 700;
+        padding-left: 0px;
+    }
+    #total{
+        font-weight: 700;
+        padding-left: 9px;
+    }
+    #image{
+        width: 60px;
+        height: 60px;
+    }
+    .col{
+        width: 100%;
+    }
+    #zero-pad{
+        padding: 2%;
+        margin-left: 10px;
+    }
+    #footer-font{
+        font-size: 12px;
+    }
+    #heading{
+        padding-top: 15px;
+    }
+}
+.sizee{
+    max-width: 100vw;
+}
+.sizep{
+    min-width: 40vw;
+}
+.textcolor{
+    color:var(--text-color);
+}
+.bodycolor{
+    background-color: var(--panel-color)!important;
+}
+.shadows{
+    box-shadow: none;
+}
 </style>
 <body>
     <nav>
@@ -424,7 +513,7 @@ form .input-custom{
                 <i class="uil uil-files-landscapes"></i>
                 <span class="link-name">Change Pass</span>
             </a></li>
-                <li><a href="/usercart">
+                <li><a href="">
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Cart</span>
                 </a></li>
@@ -449,49 +538,75 @@ form .input-custom{
             </ul>
         </div>
     </nav>
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>  
+    <section class="dashboard bodycolor">
+        <div class="top bodycolor">
+            <i class="uil uil-bars sidebar-toggle bodycolor"></i>  
         </div>
-<div class="dash-content">
-    <div class="container">
-        <div class="title">Details</div>
-        <div class="updateimgcontainer">
-            <img src="../images/<%= data[0].imgpath %> " alt="">
-        </div>
-        <div class="content">
-          <form action="/userupdate" method="post"enctype="multipart/form-data" >
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">First Name</span>
-                <input type="text"  name="firstname" value="<%= data[0].firstname %>">
-              </div>
-              <div class="input-box">
-                <span class="details">Last Name</span>
-                <input type="text"  name="lastname" value="<%= data[0].lastname %>">
-              </div>
-              <div class="input-box">
-                <span class="details">Address</span>
-                <input type="text"  name="address" value="<%= data[0].address %>">
-              </div>
-              <div class="input-box">
-                <span class="details">Email</span>
-                <input type="text"  required name="email" value="<%= data[0].email %>">
-              </div>
+      
+     
+        <div class="container bg-white rounded-top mt-5 sizee bodycolor shadows">
+            <div class="row d-flex justify-content-center bodycolor ">
+                <div class="col-lg-10 col-12 pt-3 bodycolor">
+                    <div class="d-flex ">
+                        <div class="pt-1 textcolor"><h4>My Coffee Cart</h4></div>
+                        <div class="ml-auto p-2 textcolor"><a href="/product" class="btn btn-sm bg-light border border-dark bodycolor textcolor">Products</a></div>
+                    </div>
+                    <div class="d-flex flex-column pt-4 bodycolor">
+                        <div class="bodycolor"><h5 class="text-uppercase font-weight-normal textcolor">shopping bag</h5></div>
+                        <div class="font-weight-normal textcolor"><%=pageitem%> items</div>
+                    </div>
+                    <%if(data.length > 0){
+
+                        data.forEach(function(data){
+                     %> 
+                    <div class="d-flex flex-row justify-content-between align-items-center  border-bottom mobile bodycolor">
+                        <div class="d-flex flex-row align-items-center bodycolor">
+                            <div class="bodycolor"><img src="../images/<%=data.prodimg%>" width="150" height="150" alt="" id="image"></div>
+                        
+                            <div class="d-flex flex-column pl-md-3 pl-1 sizep bodycolor">
+                                <div><h6 class="textcolor"><%=data.prodname%></h6></div>
+                                <div class="textcolor">Size:<span class="pl-4 textcolor"> M</span></div>
+                            </div>                    
+                        </div>
+                        <div class="pl-md-0 pl-1 textcolor"><b><%=data.prodprice%></b></div>
+                        <div class="pl-md-0 pl-1 textcolor"><b><%=data.total%></b></div>
+                        <div class="pl-md-0 pl-2 bodycolor">
+                            <a href="/deccount/<%=data.id%>"><span class="fa fa-minus-square text-secondary"></span></a><span class="px-md-3 px-1"><%=data.count%></span><a href="/inccount/<%=data.id%>"><span class="fa fa-plus-square text-secondary"></a></span>
+                            
+                        </div>
+                        
+                        <div class="close bodycolor"><a href="/cartdelete/<%=data.id%>">&times;</a></div>
+                    </div>
+                    <%
+                          });
+                      }else {
+                      %>
+                       <h3 class="textcolor">No Items in Cart</h3>
+                      <%}%>
+                </div>
             </div>
-            <div class="input-box">
-                <span class="input-custom">Image</span>
-                <input type="file"  id="imageval" class="image" name="image" value="<%=data[0].imgpath%>"> 
-              </div>
-              <input type="hidden"  name="id" value="<%=data[0].username%>"> 
-            <div class="button">
-              <input type="submit" value="Update">
-            </div>
-          </form>
         </div>
-      </div>
-</div>
-    </section>
+        <div class="container bg-light rounded-bottom py-4 bodycolor" id="zero-pad">
+            <div class="row d-flex justify-content-center bodycolor">
+                <div class="col-lg-10 col-12 bodycolor">
+                    <div class="d-flex justify-content-between align-items-center bodycolor">
+                        <div>
+                            <button class="btn btn-sm bg-light border border-dark bodycolor textcolor ">GO BACK</button>
+                        </div>
+                        <div class="px-md-0 px-1 bodycolor" id="footer-font">
+                            <b class="pl-md-4 textcolor">SUBTOTAL<span class="pl-md-4 textcolor"><%=subtotals%></span></b>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm bg-light border border-dark bodycolor textcolor ">CONTINUE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>
+   
+
     <script>
         const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");

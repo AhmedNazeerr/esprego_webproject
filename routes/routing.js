@@ -1,5 +1,4 @@
 //inbuilt modules
-
 const express=require('express')
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -52,7 +51,11 @@ router.get("/userdash", (req, res) => main.userdash(req, res));
 
 
 // router.get("/add_rev/:id", (req, res) => main.addrev(req, res));
+
 router.post("/add_rev", (req, res) => main.addrevpost(req, res));
+
+router.get("/reply/:username/:prodid/:id", (req, res) => main.renderreply(req, res));
+router.post("/reply_rev", (req, res) => main.renderreplypost(req, res));
 
 
 
@@ -62,5 +65,10 @@ router.get("/dash", (req, res) => main.getdash(req, res));
 
 
 
+
+
+
+
+router.get("/scrap", (req, res) => main.scrapper(req, res));
 
 module.exports = router;

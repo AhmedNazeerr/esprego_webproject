@@ -113,8 +113,8 @@ console.log('error in update occur')
         // var data = [num4, req.body.code_3];
         // connection.query(query, data, (err) => {
         //   if (!err) {
-        //     res.redirect("/admin/team");
-        //     console.log(req.session);
+            res.redirect("/admin/team");
+            console.log(req.session);
         //   } else {
         //     console.log("error in update getverify_login");
         //   }

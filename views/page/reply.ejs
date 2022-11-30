@@ -145,17 +145,14 @@ form .signup-link a:hover{
             <div class="text">
                Review
             </div>
-            <form action="/add_rev" method="post">
+            <form action="/reply_rev" method="post">
                <div class="data">
                   <label>Review</label>
-                  <input type="text"  placeholder="Enter Review here"  name='rev' required>
+                  <input type="text"  placeholder="Enter Reply here"  name='reply' required>
                </div>
-               <div class="data">
-                <label>Star</label>
-                <input type="number"  placeholder="How Many Stars" min="1" max="5"  name='rev_star' required>
-             </div>
+            <input type="hidden"  name="revid"value="<%= revid %> ">
              <input type="hidden"  name="prodid"value="<%= prodid %> ">
-             <input type="hidden"  name="username" value="<%= id %> ">
+             <input type="hidden"  name="username" value="<%= username %> ">
                <div class="btn">
                   <div class="inner"></div>
                   <button type="submit">Add Review</button>

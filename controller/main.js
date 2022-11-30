@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 // const pdf = require("html-pdf");
 // const fs = require("fs");
 var valid = require("validator");
+const e = require("connect-flash");
 // const { hash } = require("bcrypt");
 // const path=require('path')
 
@@ -25,9 +26,9 @@ exports.contactadmin = (req, res) => {
 }
 else{
   res.redirect('/home')
-}
-  
+} 
 };
+
 
 
 // for contact form
@@ -437,7 +438,8 @@ exports.addrevpost =(req, res) => {
  var review=req.body.rev;
  var username=req.body.username;
  var id=req.body.prodid;
-var query1=`Insert  into review(prodid,username,review) values ('${id}','${username}','${review}')`;
+ var star=req.body.star;
+var query1=`Insert  into review(prodid,username,review,star) values ('${id}','${username}','${review}','${star}')`;
         connection.query(query1,(err)=>{
           if(err) throw err
           console.log('review added successfully')
@@ -449,3 +451,145 @@ var query1=`Insert  into review(prodid,username,review) values ('${id}','${usern
   }
  };
 
+ exports.renderreply = (req, res) => {
+  if (req.session.username) {
+    var revid=req.params.id;
+    var prodid=req.params.prodid;
+    var username=req.params.username;
+   res.render('page/reply',{revid:revid,prodid:prodid,username:username})
+  } else {
+    res.redirect("/account");
+  }
+};
+
+exports.renderreplypost = (req, res) => {
+  if (req.session.username) {
+    var revid=req.body.revid;
+    var prodid=req.body.prodid;
+    var username=req.body.username;
+    var reply=req.body.reply;
+    var query=`insert into comment (username,prodid,reply,revid) values ('${username}','${prodid}','${reply}','${revid}')`;
+    connection.query(query,(err)=>{
+      if (err) throw err;
+      else{
+        res.redirect(`/productdetail/${prodid}`)
+      }
+    })
+  } else {
+    res.redirect(`/productdetail/${prodid}`);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+// modules for testing 
+const findallcontacts=function (callback){
+exports.contactadmin = (req, res) => {
+  var query=`Select * from contactus`;
+  connection.query(query,(err,result)=>{
+    if(err) throw err;
+    else{
+      callback(result)
+    }
+  }) 
+};
+}
+
+
+
+const fs = require("fs");
+const puppeteer = require("puppeteer");
+
+
+exports.scrapper = (req, res) => {
+  if (req.session.role=="admin") {
+    async function run () {
+      var query2="Select * from product";
+      connection.query(query2,(err,results)=>{
+          if(err) throw err;
+          else{
+              if(results.length>0){
+                  var query1="DELETE FROM product";
+                  connection.query(query1,(err)=>{
+                      if(err) throw err;
+                      else{
+                          console.log("old table data dropped");
+                      }
+                  })
+              }
+              else{
+                  console.log("table already empty");
+              }
+          }
+    
+  })
+    const browser = await puppeteer.launch({
+      headless:false
+    });
+    const page = await browser.newPage();
+    await page.goto("https://www.daraz.pk/catalog/?q=coffee&_keyori=ss&from=input&spm=a2a0e.home.search.go.35e34937YTDFfm");
+    // Get products using $$eval
+    const products = await page.$$eval("#root .inner--SODwy", (elements) =>
+      elements.map((e) => ({
+        title: e.querySelector(".title--wFj93").innerText,
+        price: e.querySelector(".price--NVB62 .currency--GVKjl").innerText
+      }))
+    );
+  
+  //   console.log(products);
+  
+  //   Save data to JSON file
+    fs.writeFile("product.json", JSON.stringify(products), (err) => {
+      if (err) throw err;
+      console.log("File saved");
+    });
+  
+  
+  //read data from file
+    fs.readFile("product.json", (err,result) => {
+      if (err) throw err;
+      var resulttemp=JSON.parse(result);
+      resulttemp.forEach(element => {
+          if(element.price==''){
+              var price=350;
+              var query=`insert into product(title,price) values ("${element.title}",'${price}')`;
+              connection.query(query,(err)=>{
+                  if(err) throw err;
+                  else{
+                      console.log('insertion successfull')
+                  }
+              })
+          }
+          else{
+          var query=`insert into product(title,price) values ("${element.title}",'${element.price}')`;
+          connection.query(query,(err)=>{
+              if(err) throw err;
+              else{
+                  console.log('insertion successfull')
+              }
+          })
+          }
+      });     
+  });
+  
+    await browser.close();
+  }
+  run();
+  } else {
+    res.redirect(`/home`);
+  }
+};
+
+
+
+
+
+//  module.exports={findallcontacts};
