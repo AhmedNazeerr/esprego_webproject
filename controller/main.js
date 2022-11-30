@@ -1,18 +1,66 @@
 const connection = require("../config/database");
-// const transporter = require("../config/mailer");
+const transporter = require("../config/mailer");
 // const bcrypt = require("bcrypt");
 // const pdf = require("html-pdf");
 // const fs = require("fs");
-// var valid = require("validator");
+var valid = require("validator");
 // const path=require('path')
 
 //for home page
 exports.servehome = (req, res) => {
   res.render("../views/page/home");
 };
-// for contact us page
-exports.servecontactus = (req, res) => {
-  res.render("../views/page/contact");
+
+
+exports.contactadmin = (req, res) => {
+  if (req.session.role == "admin") {
+  var query=`Select * from contactus`;
+  connection.query(query,(err,result)=>{
+    if(err) throw err;
+    else{
+      res.render("../views/page/admin_contact",{data:result});
+    }
+  })
+}
+else{
+  res.redirect('/home')
+}
+  
+};
+
+
+// for contact form
+exports.contactus = (req, res) => {
+    var nname=req.body.contactname;
+    var ename=req.body.contactemail;
+    var mname=req.body.contactmessage;
+    if (valid.isEmail(ename)) {
+          const mailOptions = {
+            from: "esprego.coffe@gmail.com",
+            to: ename,
+            subject: "Contact",
+            text: `Please do not reply to this email as it will not be received.This is to let you know that we have received your email and one of our representative will contact you soon.`,
+          };
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+              var querycontact=`insert into contactus(name,email,message) values ('${nname}','${ename}','${mname}')`;
+              connection.query(querycontact,(err)=>{
+                if(err) throw err;
+                else{
+                  console.log('response submitted successfully');
+                  res.redirect('/home');
+                }
+              })
+            }
+          });
+        }
+        else{
+          console.log('invalid email')
+        }
+
 };
 //for about us page
 exports.serveaboutus = (req, res) => {
