@@ -47,6 +47,8 @@ router.get("/admin/user", (req, res) => main.getuseradmin(req, res));
 router.get("/admin/user/update", (req, res) => main.updateuser(req, res));
 router.post("/admin/user/update", (req, res) => main.updateuserpost(req, res));
 router.get("/admin/user/delete/:id", (req, res) => main.deluser(req, res));
+router.post("/verify", (req, res) => main.getverify(req, res));
+router.post("/verify_login", (req, res) => main.getverifylogin(req, res));
 module.exports = router;
 
 //similar routes
