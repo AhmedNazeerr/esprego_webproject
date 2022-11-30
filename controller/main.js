@@ -1,9 +1,10 @@
 const connection = require("../config/database");
 const transporter = require("../config/mailer");
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 // const pdf = require("html-pdf");
 // const fs = require("fs");
 var valid = require("validator");
+// const { hash } = require("bcrypt");
 // const path=require('path')
 
 //for home page
@@ -62,6 +63,133 @@ exports.contactus = (req, res) => {
         }
 
 };
+
+
+exports.customer_admin=(req,res)=>{
+  if (req.session.role == "admin") {
+    var id = req.query.id;
+    var tempquery = "SELECT * FROM `contactus` WHERE `id` = ?";
+    connection.query(tempquery, [id], (err, row) => {
+      if (!err) {
+        res.render("page/customer_support", { data: row });
+      } else console.log(err);
+    });
+  } else {
+    res.redirect("/home");
+  }
+}
+
+
+
+exports.customer_admin_post=(req,res)=>{
+  if (req.session.role == "admin") {
+    var admin_useri=req.body.admin_userid;
+    var admin_messag=req.body.admin_message;
+    var admin_mail=req.body.admin_email;
+    console.log(admin_mail,admin_messag,admin_useri);
+          const mailOptions = {
+            from: "esprego.coffe@gmail.com",
+            to: admin_mail,
+            subject: "Addressing Your Query",
+            text: `${admin_messag}`,
+          };
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+              var query=`DELETE FROM contactus where id='${admin_useri}'`;
+              connection.query(query,(err)=>{
+                if(err) throw err;
+                else{
+                  console.log('data deleted sucessfully');
+                  res.redirect('/contactadmin');
+                }
+              })
+            }
+          });
+  } 
+  else {
+    res.redirect("/home");
+  }
+}
+
+
+exports.updateloguser = (req, res) => {
+  if (req.session.role == "user") {
+         var query=`select * from account where username='${req.session.username}'`;
+         connection.query(query,(err,result)=>{
+          if (err) throw err
+          else{
+            res.render('page/detailupdate',{data:result});
+          }
+         })
+  } else {
+    res.redirect("/home");
+  }
+};
+
+exports.userdash = (req, res) => {
+  if (req.session.role == "user") {
+   res.render('page/userdash',{data:req.session.username})
+  } else {
+    res.redirect("/home");
+  }
+};
+
+
+ exports.updateuserpost = (req, res) => {
+  if (req.session.role == "user") {
+    if (req.file) {
+      // var username = req.body.firstname;
+      var email = req.body.email;
+      var fname = req.body.firstname;
+      var lname = req.body.lastname;
+      var addr = req.body.address;
+      var img = req.file.originalname;;
+      var idd = req.body.id;
+      var query =
+        "update account set email=?,imgpath=?,firstname=?,lastname=?,address=? where username=?";
+      var data = [
+        email,
+        img,
+        fname,
+        lname,
+        addr,
+        idd,
+      ];
+    } else {
+      var email = req.body.email;
+      var fname = req.body.firstname;
+      var lname = req.body.lastname;
+      var addr = req.body.address;
+      var idd = req.body.id;
+        // var username = req.body.firstname;
+        var query =
+        "update account set email=?,firstname=?,lastname=?,address=? where username=?";
+      var data = [
+        email,
+        fname,
+        lname,
+        addr,
+        idd,
+      ];
+    }
+    connection.query(query, data, (err) => {
+      if (!err) {
+        res.redirect("/user_account");
+      }
+      console.log("error in update");
+    });
+  } else {
+    res.redirect("/home");
+  }
+};
+
+
+
+
+
 //for about us page
 exports.serveaboutus = (req, res) => {
   res.render("../views/page/about");
@@ -215,7 +343,25 @@ exports.getproductdetail = (req, res) => {
     "SELECT  * FROM `productdetails` WHERE `prodid` = " + req.params.id;
   connection.query(tempquery, (err, row, fields) => {
     if (!err) {
-      res.render("page/productdetails", { data: row });
+      var query=`select * from review where prodid='${req.params.id}'`;
+      connection.query(query,(err,resu)=>{
+        if(err) throw err
+        else{
+          var query2=`select * from comment where prodid='${req.params.id}'`;
+          connection.query(query2,(err,results)=>{
+            if(err) throw err
+            else{
+          if((req.session.role=="user")){
+          res.render("page/productdetails", { data: row ,rev:resu,temp:1,user:req.session.username,comment:results});
+          }
+          else{
+            res.render("page/productdetails", { data: row ,rev:resu,temp:0,user:null,comment:results});
+          }
+        }
+        })
+        }
+      })
+     
     } else console.log(err);
   });
 };
@@ -223,14 +369,17 @@ exports.getproductdetail = (req, res) => {
 exports.getaccpage = (req, res) => {
   if (req.session.role == "admin") {
     res.redirect("/admin/team/add");
-  } else {
+  } else if(req.session.role=="user"){
+    res.redirect("/userdash");
+  }
+  else{
     if (!req.session.username) {
       res.render("page/login");
     } else {
-      res.redirect("/user");
+      res.redirect("/home");
     }
   }
-};
+}
 
 
 exports.getdash = (req, res) => {
@@ -240,3 +389,63 @@ exports.getdash = (req, res) => {
     res.redirect("/home");
   }
 };
+
+exports.changeuserpass = (req, res) => {
+     if(req.session.role=="user"){
+        res.render('page/changeuserpass',{data:req.session.username})
+     }
+     else{
+      res.redirect('/home')
+     }
+};
+exports.changeuserpasspost = async(req, res) => {
+  var pold = req.body.oldp;
+  var pnew = req.body.newp;
+  var hashedpassword = await bcrypt.hash(pnew, 10);
+  var id = req.body.id;
+  var query=`update account set password='${hashedpassword}' where username='${id}'`;
+  var addingdataquery = `SELECT * FROM account WHERE username='${id}'`;
+  connection.query(addingdataquery, (err, row) => {
+    if (err) throw err;
+    if (row.length &&  bcrypt.compareSync(pold, row[0].password)) {
+        connection.query(query,(err)=>{
+          if(err) throw err
+          else{
+            console.log('password updated successfully');
+            res.redirect('/userdash');
+          }
+        })
+        console.log('password match')
+    } 
+    else {
+      console.log("Old Password is incorrect");
+      res.render('page/changeuserpass',{data:id})
+    }
+  });
+};
+
+// exports.addrev =(req, res) => {
+//  if(req.session.role=="user"){
+//   res.render('page/add_rev',{id:req.session.username,prodid:req.params.id});
+//  }
+//  else{
+//   res.redirect('/product')
+//  }
+// };
+exports.addrevpost =(req, res) => {
+  if(req.session.role=="user"){
+ var review=req.body.rev;
+ var username=req.body.username;
+ var id=req.body.prodid;
+var query1=`Insert  into review(prodid,username,review) values ('${id}','${username}','${review}')`;
+        connection.query(query1,(err)=>{
+          if(err) throw err
+          console.log('review added successfully')
+          res.redirect(`/productdetail/${id}`);
+        })
+  }
+  else{
+   res.redirect('/product')
+  }
+ };
+

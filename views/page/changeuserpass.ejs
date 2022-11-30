@@ -7,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
-    <title></title>
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
+
     <!--<title>Admin Dashboard Panel</title>--> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <style>
     /* ===== Google Font Import - Poppins ===== */
@@ -393,13 +392,12 @@ form .input-custom{
   input .image{
     margin: 10px;
   }
-  .heads{
-    background-color:var(--panel-color) ;
-    border-color: var(--text-color);
+  .updateimgcontainer{
+    width: 300px;
+    height: 300px;
   }
-  .headp{
-    color:var(--text-color) ;
-    border-color: var(--text-color);
+  .updateimgcontainer img{
+    width: 100%;
   }
 </style>
 <body>
@@ -408,43 +406,32 @@ form .input-custom{
             <div class="logo-image">
             </div>
 
-            <span class="logo_name">Admin Panel</span>
+            <span class="logo_name">User Panel</span>
         </div>
 
         <div class="menu-items">
             <ul class="nav-links">
-              <li><a href="/dash">
+              <li><a href="/userdash">
                 <i class="uil uil-estate"></i>
                 <span class="link-name">Dahsboard</span>
             </a></li>
-                <li><a href="/admin/team/add">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Add new member</span>
-                </a></li>
-                <li><a href="/admin/team">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Our Team</span>
-                </a></li>
-                <li><a href="/admin/product/add">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Add product</span>
-                </a></li>
-                <li><a href="/admin/product">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Our product</span>
-                </a></li>
-                <li><a href="/admin/user">
-                  <i class="uil uil-files-landscapes"></i>
-                  <span class="link-name">Our User</span>
+            <ul class="nav-links">
+                <li><a href="/update">
+                  <i class="uil uil-estate"></i>
+                  <span class="link-name">Update</span>
               </a></li>
-              <li><a href="/contactadmin">
+              <li><a href="/changeuserpass">
                 <i class="uil uil-files-landscapes"></i>
-                <span class="link-name">Customer Support</span>
+                <span class="link-name">Change Pass</span>
             </a></li>
+                <li><a href="">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Cart</span>
+                </a></li>
                             </ul>
             
             <ul class="logout-mode">
-              <li><a href="/adminsignout">
+              <li><a href="/signout">
                 <i class="uil uil-signout"></i>
                 <span class="link-name">Logout</span>
             </a></li>
@@ -467,28 +454,27 @@ form .input-custom{
             <i class="uil uil-bars sidebar-toggle"></i>  
         </div>
 <div class="dash-content">
-    <%if(data.length > 0){
-
-        data.forEach(function(data){
-     %> 
-     <div class="card mt-3 heads">
-        
-    
-
-     <div class="card-header headp">
-        <%=data.name%>
-    </div>
-    <div class="card-body headp">
-      <h5 class="card-title headp"><%=data.email%></h5>
-      <p class="card-text headp"><%=data.message%></p>
-      <a href="/customer_support?id=<%= data.id %>" class="btn btn-secondary">Reply</a>
-    </div>
-</div>
-        <%
-                        });
-                    }
-                    %>
-    
+    <div class="container">
+        <div class="title">Change Password</div>
+        <div class="content">
+            <form action="/changeuserpass" method="post" >
+                <div class="user-details">
+                  <div class="input-box">
+                    <span class="details">Old Password</span>
+                    <input type="text"  name="oldp" >
+                  </div>
+                  <div class="input-box">
+                    <span class="details">New Password</span>
+                    <input type="text"  name="newp">
+                  </div>
+                </div>
+                  <input type="hidden"  name="id" value="<%=data%>"> 
+                <div class="button">
+                  <input type="submit" value="Update">
+                </div>
+              </form>
+        </div>
+      </div>
 </div>
     </section>
     <script>
