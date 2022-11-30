@@ -429,16 +429,16 @@ form .input-custom{
                     <span class="link-name">Our product</span>
                 </a></li>
                 <li><a href="/admin/user">
-                  <i class="uil uil-files-landscapes"></i>
-                  <span class="link-name">Our User</span>
-              </a></li>
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Our User</span>
+                </a></li>
                             </ul>
             
             <ul class="logout-mode">
-              <li><a href="/adminsignout">
-                <i class="uil uil-signout"></i>
-                <span class="link-name">Logout</span>
-            </a></li>
+                <li><a href="/adminsignout">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
 
                 <li class="mode">
                     <a href="#">
@@ -462,56 +462,13 @@ form .input-custom{
     <div class="container">
         <div class="title">Registration</div>
         <div class="content">
-          <form action="/admin/team/add" method="post" enctype="multipart/form-data">
+          <form action="/admin/user/update" method="post">
             <div class="user-details">
               <div class="input-box">
-                <span class="details">First Name</span>
-                <input type="text" placeholder="Enter your First name" required name="firstname">
+                <span class="details">User Role</span>
+                <input type="text" placeholder="Enter user role" required name="userrole" value="<%=data[0].role%>">
               </div>
-              <div class="input-box">
-                <span class="details">Last Name</span>
-                <input type="text" placeholder="Enter your Last Name" required name="lastname">
-              </div>
-              <div class="input-box">
-                <span class="details">Email</span>
-                <input type="text" placeholder="Enter your email" required name="email">
-              </div>
-              <div class="input-box">
-                <span class="details">Cnic Number</span>
-                <input type="text" placeholder="Enter your Cnic" required name="cnic">
-              </div>
-              <div class="input-box">
-                <span class="details">Position</span>
-                <input type="text" placeholder="Enter your Position" required name="pos">
-              </div>
-              <div class="input-box">
-                <span class="details">Degree</span>
-                <input type="text" placeholder="Enter your Degree" required name="deg">
-              </div>
-              <div class="input-box">
-                <span class="details">Phone</span>
-                <input type="number" placeholder="Enter your Phone" required name="phn">
-              </div>
-              <div class="input-box">
-                <span class="details">Experience</span>
-                <input type="number" placeholder="Enter your Experience" required name="exp">
-              </div>
-              <div class="input-box">
-                <span class="details">Career Level</span>
-                <input type="text" placeholder="Enter your Career-Level" required name="level">
-              </div>
-              <div class="input-box">
-                <span class="details">Description</span>
-                <input type="text" placeholder="Enter your Description" required name="Des">
-              </div>
-              <div class="input-box">
-                <span class="details">fax</span>
-                <input type="number" placeholder="Enter your fax" required name="fax">
-              </div>
-              <div class="input-box1">
-                <span class="input-custom">Image</span>
-                <input type="file" class="image" required name="image"> 
-              </div>
+              <input type="hidden"  name="userid" value="<%=data[0].username%>">
             </div>
             <div class="button">
               <input type="submit" value="Register">

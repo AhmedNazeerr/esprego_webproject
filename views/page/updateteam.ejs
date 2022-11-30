@@ -297,7 +297,7 @@ nav.close ~ .dashboard .top{
 .content form .user-details{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 20px 0 12px 0;
   color: var(--text-color);
 }
@@ -424,13 +424,17 @@ form .input-custom{
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Our product</span>
                 </a></li>
+                <li><a href="/admin/user">
+                  <i class="uil uil-files-landscapes"></i>
+                  <span class="link-name">Our User</span>
+              </a></li>
                             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+              <li><a href="/adminsignout">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Logout</span>
+            </a></li>
 
                 <li class="mode">
                     <a href="#">
@@ -475,7 +479,32 @@ form .input-custom{
                 <span class="details">Position</span>
                 <input type="text"  required name="pos" value="<%= data[0].workerpos %>">
               </div>
+              <div class="input-box">
+                <span class="details">Degree</span>
+                <input type="text" placeholder="Enter your Degree" required name="deg" value="<%= data[0].workerdegree %>">
+              </div>
+              <div class="input-box">
+                <span class="details">Phone</span>
+                <input type="number" placeholder="Enter your Phone" required name="phn" value="<%= data[0].workerphone %>">
+              </div>
+              <div class="input-box">
+                <span class="details">Experience</span>
+                <input type="number" placeholder="Enter your Experience" required name="exp" value="<%= data[0].workerexperience %>">
+              </div>
+              <div class="input-box">
+                <span class="details">Career Level</span>
+                <input type="text" placeholder="Enter your Career-Level" required name="level" value="<%= data[0].workercareerlevel %>">
+              </div>
+              <div class="input-box">
+                <span class="details">Description</span>
+                <input type="text" placeholder="Enter your Description" required name="Des" value="<%= data[0].workerdesc %>">
+              </div>
+              <div class="input-box">
+                <span class="details">fax</span>
+                <input type="number" placeholder="Enter your fax" required name="fax" value="<%= data[0].workerfax %>">
+              </div>
             </div>
+
             <div class="input-box">
                 <span class="input-custom">Image</span>
                 <input type="file" class="image" name="image" value="<%=data[0].imgpath%>"> 

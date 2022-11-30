@@ -428,10 +428,14 @@ form .input-custom{
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Our product</span>
                 </a></li>
+                <li><a href="/admin/user">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Our User</span>
+                </a></li>
                             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="/adminsignout">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
@@ -477,6 +481,14 @@ form .input-custom{
                 <span class="details">Description</span>
                 <input type="text" placeholder="Enter Description" required name="desc" 
                 value="<%=data[0].proddesc%>">
+              </div>
+              <div class="input-box">
+                <span class="details">Price</span>
+                <input type="number" placeholder="Enter Price" required name="price" value="<%=data[0].prodprice%>">
+              </div>
+              <div class="input-box">
+                <span class="details">Warranty up to </span>
+                <input type="number" placeholder="Enter Warranty" required name="wrant" value="<%=data[0].prodwrant%>">
               </div>
               <div class="input-box1">
                 <span class="input-custom">Image</span>
