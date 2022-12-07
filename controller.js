@@ -9,6 +9,8 @@ const path=require("path")
 
 
 
+
+
 const dotenv=require('dotenv').config();
 app.set('view engine', 'ejs');
 
@@ -22,7 +24,6 @@ const Routes_cart = require("./routes/user_cart");
 
 
 var cookieParser = require('cookie-parser');
-const { commit } = require('./config/database');
 // const { Socket } = require('socket.io');
 // const jwt=require('jsonwebtoken')
 // cookie parser middleware
@@ -39,6 +40,8 @@ app.use(session({
 app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: false })); // For parsing application/x-www-form-urlencoded
 app.use(express.static(path.join(__dirname,'views')))
+
+app.use(flash())
 
 
 

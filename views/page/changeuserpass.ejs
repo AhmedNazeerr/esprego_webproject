@@ -428,6 +428,14 @@ form .input-custom{
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Cart</span>
                 </a></li>
+                <li><a href="/pastorder">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Past Order</span>
+                </a></li>
+                <li><a href="/getwishlist">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Wish List</span>
+                </a></li>
                             </ul>
             
             <ul class="logout-mode">
@@ -461,11 +469,11 @@ form .input-custom{
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">Old Password</span>
-                    <input type="text"  name="oldp" >
+                    <input type="text"  name="oldp" required>
                   </div>
                   <div class="input-box">
                     <span class="details">New Password</span>
-                    <input type="text"  name="newp">
+                    <input type="text"  name="newp" required>
                   </div>
                 </div>
                   <input type="hidden"  name="id" value="<%=data%>"> 

@@ -566,6 +566,61 @@ input[type="range"]::-moz-range-thumb{
    color:var(--main-color);
 }
 
+.wrappers {
+    margin-top: 20px;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrappers form{
+    width: 95%;
+    margin-top: 13px;
+}
+
+#search-containers {
+  margin: 1em 0;
+  width: 95%;
+}
+#search-containers input {
+  background-color: transparent;
+  width: 40%;
+  border-bottom: 2px solid #110f29;
+  padding: 1em 0.3em;
+  font-size: 1.45rem;
+}
+#search-containers input:focus {
+  border-bottom-color: #6759ff;
+}
+#search-containers button {
+  padding: 1em 2em;
+  margin-left: 1em;
+  background-color: #6759ff;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 0.5em;
+  font-size: 1.2rem;
+}
+.button-values {
+  border: 2px solid #6759ff;
+  padding: 1em 2.2em;
+  border-radius: 3em;
+  background-color: transparent;
+  color: #6759ff;
+  cursor: pointer;
+}
+.button-values:hover{
+  background-color: #6759ff;
+}
+.textc{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
 </style>
 <body>
 
@@ -576,36 +631,31 @@ input[type="range"]::-moz-range-thumb{
        <a href="/home" class="logo"><img src="../images/logo.png" alt=""></a>
  
        <nav class="navbar">
-          <a href="/home">Home</a>
-          <a href="/about">About</a>
-          <a href="/product">Menu</a>
-          <a href="/team">Team</a>
-          <a href="/account">Account</a>
-       </nav>
+        <a href="/home">Home</a>
+        <a href="/about">About</a>
+        <a href="/getmenu">Menu</a>
+        <a href="/product">Store</a>
+        <a href="/team">Team</a>
+        <a href="/account">Account</a>
+     </nav>
  
     </section>
  
  </header>
 
-
-
-<div class="wrapper-body">
-  <div class="wrapper">
-      <div class="search">
-          <form action="/searchteam">
-            <input type="text" class="search-input" placeholder="search..." name="sname" id="sname">
-            <input  class="search-icon" type="submit" value="S">
-        </div>
-      <div class="price-input" >
-      <div class="field">
-        <span>Year OF Experience</span>
-        <input type="number" class="input-min" max="60" value="60" name="year" id="year">
-      </div>
-    </form>
+ <div class="wrappers">
+    <form action="/searchteam">
+    <div id="search-containers">
+      <input
+        type="search"
+        id="search-input"
+        name="sname"
+        placeholder="Search Member name here.."
+      />
+      <button id="search" type="submit">Search</button>
+    </div>
+</form>
   </div>
-</div>
-</div>
-      
   
 
   
@@ -619,7 +669,9 @@ input[type="range"]::-moz-range-thumb{
               <i class = "fas fa-list-ul"></i>
           </button>
       </div>
-
+      <%if(it==1){%>
+  <h4>No Result Found</h4>
+        <%}%>
       <div class = "item-list">
         <%if(data.length > 0){
 
@@ -636,7 +688,6 @@ input[type="range"]::-moz-range-thumb{
                   </div>
                   <p><%=data.workerdesc%></p>
                   <p><%=data.workerfax%></p>
-                  <button type = "button" class = "add-btn">add to cart</button>
               </div>
           </div>
           <%
@@ -646,26 +697,13 @@ input[type="range"]::-moz-range-thumb{
       </div>
   </div>
 </div>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <% if(page > 1) { %> <a class="page-link" href="/team/?page=<%=page-1%>">Before</a> 
-      <% } %>
-    </li>
-    <% for(let i = iterator; i <= endingLink; i++) { %>
-        <% if(i === page) { %>
-        <li class="page-item"><a class="page-link" href="/team/?page=<%=i%>"><%=i%></a></li>
-        <% continue; %>
-    <% } %>
-        <a class="page-link"href="/team/?page=<%=i%>"><%=i%></a>
-        <% } %>
-        <li class="page-item">
-          <% if(page < numberOfPages) { %> <a class="page-link" href="/team/?page=<%=page+1%>">After</a> <% } %>
-      
-    </li>
-  </ul>
-</nav>
+<div class="text-center">
+          <%-include("./partials/teampag", {
+            pages: pages,
+            CurrentPage: CurrentPage,
+            lastPage: lastPage
+    }) %>
+    </div>
 <section class="footer">
 
 <div class="box-container">

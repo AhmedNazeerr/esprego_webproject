@@ -149,7 +149,7 @@ form .signup-link a:hover{
             <form action="/verify_login_change_password" method="post">
                <div class="data">
                   <label>Code</label>
-                  <input type="text"  placeholder="Enter Code Here"  name='code_verify'required>
+                  <input type="number"  placeholder="Enter Code Here"  name='code_verify'required min="1">
                </div>
                <div class="data">
                 <a href="/account">Wrong Credentials</a>

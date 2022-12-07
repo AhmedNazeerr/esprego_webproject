@@ -1,5 +1,5 @@
 "use strict";
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 const dotenv=require('dotenv').config();
 const transporter = nodemailer.createTransport({
   service: `${dotenv.parsed.Service}`,

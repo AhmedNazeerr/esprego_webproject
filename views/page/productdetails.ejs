@@ -32,260 +32,205 @@
     }
     body {
       line-height: 1.5;
-      overflow-x: hidden; /* Hide horizontal scrollbar */
-    }
-    .card-wrapper {
-      min-height: 60vh;
-      width: 100vw;
-      margin: 0 auto;
-      overflow: hidden;
-      width: 100vw;
-      border: 0px;
-      padding-bottom: 10px;
-    }
-    img {
-      width: 100%;
-      display: block;
-    }
-    .img-display {
-      overflow: hidden;
-      max-width: 293px;
-    }
-    .img-showcase {
-      display: flex;
-      width: 100%;
-      transition: all 0.5s ease;
-    }
-    .img-showcase img {
-      min-width: 100%;
-    }
-    .img-select {
-      display: flex;
-    }
-    .img-item {
-      margin: 0.3rem;
-    }
-    .img-item:nth-child(1),
-    .img-item:nth-child(2),
-    .img-item:nth-child(3) {
-      margin-right: 0;
-    }
-    .img-item:hover {
-      opacity: 0.8;
-    }
-    .product-content {
-      /* padding: 0rem rem; */
-      margin-top: 0px;
-    }
-    .product-title {
-      font-size: 2.5rem;
-      text-transform: capitalize;
-      font-weight: 700;
-      position: relative;
-      color: #12263a;
-      margin: 1rem 0;
-    }
-    .product-title::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 4px;
-      width: 80px;
-      background: #12263a;
-    }
-    .product-link {
-      text-decoration: none;
-      text-transform: uppercase;
-      font-weight: 400;
-      font-size: 0.9rem;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      background: #256eff;
-      color: #fff;
-      padding: 0 0.3rem;
-      transition: all 0.5s ease;
-    }
-    .product-link:hover {
-      opacity: 0.9;
-    }
-    .product-rating {
-      color: #ffc107;
-    }
-    .product-rating span {
-      font-weight: 600;
-      color: #252525;
-    }
-    .product-price {
-      margin: 1rem 0;
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-    .product-price span {
-      font-weight: 400;
-    }
-    .last-price span {
-      color: #f64749;
-      text-decoration: line-through;
-    }
-    .new-price span {
-      color: #f79410;
-    }
-    .product-detail h2 {
-      text-transform: capitalize;
-      color: #12263a;
-      padding-bottom: 0.6rem;
-    }
-    .product-detail p {
-      font-size: 0.8rem;
-      padding: 0.3rem;
-      opacity: 0.8;
-    }
-    .product-detail ul {
-      margin: 1rem 0;
-      font-size: .8rem;
-    }
-    .product-detail ul li {
-      margin: 0;
-      list-style: none;
-      background: url(../images/checked.png) left center no-repeat;
-      background-size: 18px;
-      padding-left: 1.7rem;
-      margin: 0.4rem 0;
-      font-weight: 600;
-      opacity: 0.9;
-    }
-    .product-detail ul li span {
-      font-weight: 400;
-    }
-    .purchase-info {
-      margin: 1.5rem 0;
-    }
-    .purchase-info input,
-    .purchase-info .btn {
-      border: 1.5px solid #ddd;
-      border-radius: 25px;
-      text-align: center;
-      padding: 0.45rem 0.8rem;
-      outline: 0;
-      margin-right: 0.2rem;
-      margin-bottom: 1rem;
-    }
-    .purchase-info input {
-      width: 60px;
-    }
-    .purchase-info .btn {
-      cursor: pointer;
-      color: #fff;
-    }
-    .purchase-info .btn:first-of-type {
-      background: #256eff;
-    }
-    .purchase-info .btn:last-of-type {
-      background: #f64749;
-    }
-    .purchase-info .btn:hover {
-      opacity: 0.9;
-    }
-    .social-links {
-      display: flex;
-      align-items: center;
-    }
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      color: #000;
-      border: 1px solid #000;
-      margin: 0 0.2rem;
-      border-radius: 50%;
-      text-decoration: none;
-      font-size: 0.8rem;
-      transition: all 0.5s ease;
-    }
-    .social-links a:hover {
-      background: #000;
-      border-color: transparent;
-      color: #fff;
+       /* Hide horizontal scrollbar */
     }
 
-    @media screen {
-      .card {
+    .card-wrappers{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.img-displays{
+    overflow-wrap: normal;
+    overflow: hidden;
+    /* overflow-x: hidden; */
+}
+.img-showcases{
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+    /* margin-top: -10vh; */
+}
+.img-showcases img{
+    max-width: 100%;
+    max-height: 60%;
+   
+}
+.img-selects{
+    display: flex;
+}
+.img-items{
+    margin: 0.3rem;
+}
+.img-items:nth-child(1),
+.img-items:nth-child(2),
+.img-items:nth-child(3){
+    margin-right: 0;
+}
+.img-items:hover{
+    opacity: 0.8;
+}
+.product-contents{
+    padding: 2rem 1rem;
+}
+.product-titles{
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 700;
+    position: relative;
+    color: #12263a;
+    margin: 1rem 0;
+}
+.product-titles::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 80px;
+    background: #12263a;
+}
+.product-links{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    background: #256eff;
+    color: #fff;
+    padding: 0 0.3rem;
+    transition: all 0.5s ease;
+}
+.product-links:hover{
+    opacity: 0.9;
+}
+.product-ratings{
+    color: #ffc107;
+}
+.product-ratings span{
+    font-weight: 600;
+    color: #252525;
+}
+.product-prices{
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.product-prices span{
+    font-weight: 400;
+}
+.last-prices span{
+    color: #f64749;
+    text-decoration: line-through;
+}
+.new-prices span{
+    color: #256eff;
+}
+.product-details h2{
+    text-transform: capitalize;
+    color: #12263a;
+    padding-bottom: 0.6rem;
+}
+.product-details p{
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    opacity: 0.8;
+}
+.product-details ul{
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+.product-details ul li{
+    margin: 0;
+    list-style: none;
+    background: url(shoes_images/checked.png) left center no-repeat;
+    background-size: 18px;
+    padding-left: 1.7rem;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
+}
+.product-details ul li span{
+    font-weight: 400;
+}
+.purchase-infos{
+    margin: 1.5rem 0;
+}
+.purchase-infos input,
+.purchase-infos .btn{
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    text-align: center;
+    padding: 0.45rem 0.8rem;
+    outline: 0;
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
+}
+.purchase-infos input{
+    width: 60px;
+}
+.purchase-infos .btn{
+    cursor: pointer;
+    color: #fff;
+}
+.purchase-infos .btn:first-of-type{
+    background: #256eff;
+}
+.purchase-infos .btn:last-of-type{
+    background: #f64749;
+}
+.purchase-infos .btn:hover{
+    opacity: 0.9;
+}
+.social-linkss{
+    display: flex;
+    align-items: center;
+}
+.social-linkss a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #000;
+    border: 1px solid #000;
+    margin: 0 0.2rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.5s ease;
+}
+.social-linkss a:hover{
+    background: #000;
+    border-color: transparent;
+    color: #fff;
+}
+
+@media screen and (min-width: 992px){
+    .cards{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1.5rem;
-        margin-bottom: 18px;
-      }
-      .card-wrapper {
-        min-height: 60vh;
+    }
+    .card-wrappers{
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        min-width: 100vw;
-        overflow:hidden;
-      }
-      .product-imgs {
+    }
+    .product-imgss{
         display: flex;
         flex-direction: column;
         justify-content: center;
-      }
-      .product-content {
-        padding-top: 10vh;
-      }
     }
-    /* }
-    .btn-grey {
-      background-color: #d8d8d8;
-      color: #fff;
+    .product-contents{
+        padding-top: 0;
     }
-    .rating-block {
-      background-color: #fafafa;
-      border: 1px solid #efefef;
-      padding: 15px 15px 20px 15px;
-      border-radius: 3px;
-    }
-    .bold {
-      font-weight: 700;
-    }
-    .padding-bottom-7 {
-      padding-bottom: 7px;
-    }
-    .review-block {
-      background-color: #fafafa;
-      border: 1px solid #efefef;
-      padding: 15px;
-      border-radius: 3px;
-      margin-bottom: 15px;
-    }
-    .review-block-name {
-      font-size: 12px;
-      margin: 10px 0;
-    }
-    .review-block-date {
-      font-size: 12px;
-    }
-    .review-block-rate {
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-    .review-block-title {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .review-block-description {
-      font-size: 13px;
-    }
-    .main_rev {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
- */
-
+}
 
 .img-sm {
     width: 46px;
@@ -398,83 +343,130 @@
     font-weight: 600;
 }
 
+.wrapper {
+  width: 95%;
+  margin: 0 auto;
+}
+#search-container {
+  margin: 1em 0;
+}
+#search-container input {
+  background-color: transparent;
+  width: 40%;
+  border-bottom: 2px solid #110f29;
+  padding: 1em 0.3em;
+}
+#search-container input:focus {
+  border-bottom-color: #6759ff;
+}
+#search-container button {
+  padding: 1em 2em;
+  margin-left: 1em;
+  background-color: #6759ff;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 0.5em;
+}
+.button-value {
+  border: 2px solid #6759ff;
+  padding: 1em 2.2em;
+  border-radius: 3em;
+  background-color: transparent;
+  color: #6759ff;
+  cursor: pointer;
+}
+.active {
+  background-color: #6759ff;
+  color: #ffffff;
+}
+.product-links:hover{
+  color:white;
+text-decoration: none;
+}
   </style>
 
   <body>
-    <div class="card-wrapper">
-      <div class="card">
+    <div class = "card-wrappes">
+      <div class = "cards">
         <!-- card left -->
-        <div class="product-imgs">
-          <div class="img-display">
-            <div class="img-showcase">
-              <img src="../images/p2.jpg" alt="shoe image" />
-              <img src="../images/p2.jpg" alt="shoe image" />
-              <img src="../images/p3.jpg" alt="shoe image" />
-              <img src="../images/p3.jpg" alt="shoe image" />
-            </div>
-          </div>
-          <div class="img-select">
-            <div class="img-item">
-              <a href="#" data-id="1">
-                <img src="../images/p2.jpg" alt="shoe image" />
-              </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="2">
-                <img src="../images/p2.jpg" alt="shoe image" />
-              </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="3">
-                <img src="../images/p3.jpg" alt="shoe image" />
-              </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="4">
-                <img src="../images/p3.jpg" alt="shoe image" />
-              </a>
+        <div class = "product-imgss">
+          <div class = "img-displays">
+            <div class = "img-showcases">
+              <img src="../images/<%=data[0].prodimg%>" alt="image" />
+              <img src="../images/<%=data[0].prodimg1%>" alt="image" />
+              <img src="../images/<%=data[0].prodimg2%>" alt="image" />
+              <img src="../images/<%=data[0].prodimg3%>" alt="image" />
             </div>
           </div>
         </div>
         <!-- card right -->
-        <div class="product-content">
-          <h2 class="product-title"><%= data[0].prodname %></h2>
-
-          <div class="product-price">
-            <p class="last-price">Old Price: <span>$257.00</span></p>
-            <p class="new-price">
-              New Price: <span>$<%= data[0].prodprice %> </span>
-            </p>
+        <div class = "product-contents">
+          <h2 class = "product-titles"><%= data[0].prodname %></h2>
+          <a href = "/product" class = "product-links" style="text-decoration: none;background-color:green;">visit Store</a>
+          <form action="/addtowishlist" method="post">
+            <input type="hidden" name="prodid" value="<%=data[0].prodid%>">
+             <button type="submit" class="btn">
+               Add to WishList <i class="fas fa-shopping-cart"></i>
+             </button>
+           </form>
+  
+          <div class = "product-prices">
+            <p class = "new-prices">Price: <span>$<%= data[0].prodprice %></span></p>
           </div>
 
-          <div class="product-detail">
-            <h2>about this item:</h2>
-            <p><%= data[0].proddesc %></p>
+          <div class = "product-details">
+            <h2>about this item: </h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
             <ul>
-              <li>Available: <span>in stock</span></li>
-              <li>Category: <span>Shoes</span></li>
+              <li>Category: <span><%=data[0].catg%></span></li>
               <li>Shipping Area: <span>All over the world</span></li>
               <li>Shipping Fee: <span>Free</span></li>
             </ul>
           </div>
+
           <%if((data[0].prodinstock)>0){%>
-          <div class="purchase-info">
-            <form action="/addtocart" method="post">
-            <input type="number" min="1" value="1" max="<%=data[0].prodinstock%>" name="count"/>
-           <input type="hidden" name="prodid" value="<%=data[0].prodid%>">
-            <button type="submit" class="btn">
-              Add to Cart <i class="fas fa-shopping-cart"></i>
-            </button>
-          </form>
-          </div>
-          <%} else {%>
-            <div class="purchase-info">
-              <h4>Out Of Stock</h4>
+            <div class="purchase-infos">
+              <form action="/addtocart" method="post">
+              <input type="number" min="1" value="1" max="<%=data[0].prodinstock%>" name="count"/>
+             <input type="hidden" name="prodid" value="<%=data[0].prodid%>">
+              <button type="submit" class="btn">
+                Add to Cart <i class="fas fa-shopping-cart"></i>
+              </button>
+            </form>
             </div>
-            <%}%>
+            <%} else {%>
+              <div class="purchase-info">
+                <h4>Out Of Stock</h4>
+              </div>
+              <%}%>
+          <div class = "img-selects">
+            <div class = "img-items">
+              <a href = "#" data-id = "1">
+                <img class="slidimg"src="../images/<%=data[0].prodimg%>" alt="image" />
+              </a>
+            </div>
+            <div class = "img-items">
+              <a href = "#" data-id = "2">
+                <img class="slidimg"src="../images/<%=data[0].prodimg1%>" alt="image" />
+              </a>
+            </div>
+            <div class = "img-items">
+              <a href = "#" data-id = "3">
+                <img class="slidimg"src="../images/<%=data[0].prodimg2%>" alt="image" />
+              </a>
+            </div>
+            <div class = "img-items">
+              <a href = "#" data-id = "4">
+                <img class="slidimg"src="../images/<%=data[0].prodimg3%>" alt="image" />
+              </a>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
+
     <div class="container bootdey">
      
       <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
@@ -571,28 +563,24 @@
     </div>
   </body>
   <script>
-    const imgs = document.querySelectorAll(".img-select a");
-    const imgBtns = [...imgs];
-    let imgId = 1;
+const imgs = document.querySelectorAll('.img-selects a');
+const imgBtns = [...imgs];
+let imgId = 1;
 
-    imgBtns.forEach((imgItem) => {
-      imgItem.addEventListener("click", (event) => {
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
         event.preventDefault();
         imgId = imgItem.dataset.id;
         slideImage();
-      });
     });
+});
 
-    function slideImage() {
-      const displayWidth = document.querySelector(
-        ".img-showcase img:first-child"
-      ).clientWidth;
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcases img:first-child').clientWidth;
 
-      document.querySelector(".img-showcase").style.transform = `translateX(${
-        -(imgId - 1) * displayWidth
-      }px)`;
-    }
+    document.querySelector('.img-showcases').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
 
-    window.addEventListener("resize", slideImage);
+window.addEventListener('resize', slideImage);
   </script>
 </html>

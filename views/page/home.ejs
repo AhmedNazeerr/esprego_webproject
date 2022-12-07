@@ -4,12 +4,12 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Complete Responsive Coffee Shop Website Design</title>
+   <title>Home</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 <style>
@@ -374,6 +374,89 @@ animation: forwards;
 .footer .credit span{
    color:var(--main-color);
 }
+.section_padding_130 {
+    padding-top: 130px;
+    padding-bottom: 130px;
+}
+.faq_area {
+    position: relative;
+    z-index: 1;
+}
+
+.faq-accordian {
+    position: relative;
+    z-index: 1;
+}
+.faq-accordian .card {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+}
+.faq-accordian .card:last-child {
+    margin-bottom: 0;
+}
+.faq-accordian .card .card-header {
+    background-color: #ffffff;
+    padding: 0;
+    border-bottom-color: #ebebeb;
+}
+.faq-accordian .card .card-header h6 {
+    cursor: pointer;
+    padding: 1.75rem 2rem;
+    color: #3f43fd;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.faq-accordian .card .card-header h6 span {
+    font-size: 1.5rem;
+}
+.faq-accordian .card .card-header h6.collapsed {
+    color: #070a57;
+}
+.faq-accordian .card .card-header h6.collapsed span {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+.faq-accordian .card .card-body {
+    padding: 1.75rem 2rem;
+}
+.faq-accordian .card .card-body p:last-child {
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 575px) {
+    .support-button p {
+        font-size: 14px;
+    }
+}
+
+.support-button i {
+    color: #3f43fd;
+    font-size: 1.25rem;
+}
+@media only screen and (max-width: 575px) {
+    .support-button i {
+        font-size: 1rem;
+    }
+}
+
+.support-button a {
+    text-transform: capitalize;
+    color: #2ecc71;
+}
+@media only screen and (max-width: 575px) {
+    .support-button a {
+        font-size: 13px;
+    }
+}
 </style>
 <body>
    
@@ -388,13 +471,21 @@ animation: forwards;
       <nav class="navbar">
          <a href="/home">Home</a>
          <a href="/about">About</a>
-         <a href="/product">Menu</a>
+         <a href="/getmenu">Menu</a>
+         <a href="/product">Store</a>
          <a href="/team">Team</a>
          <a href="/account">Account</a>
       </nav>
 
    </section>
-
+   <%if(message.length>0){%>
+      <div class="alert alert-warning alert-dismissible fade show" style="font-size: 20px;" role="alert">
+        <%=message%>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%}%>
 </header>
 
 <!-- header section ends -->
@@ -550,8 +641,8 @@ animation: forwards;
       <form action="/contactus" method="post">
          <h3>Spill the beans, and we'll get back to you a little latte-r.</h3>
          <input type="text" name="contactname" required class="box" maxlength="50" placeholder="enter your name">
-         <input type="email" name="contactemail" class="box" maxlength="70" placeholder="enter your email"  >
-         <input type="text" name="contactmessage" class="box" maxlength="200" placeholder="enter your Message" >
+         <input type="email" name="contactemail"  required class="box" maxlength="70" placeholder="enter your email"  >
+         <input type="text" name="contactmessage" required  class="box" maxlength="200" placeholder="enter your Message" >
          <input type="submit"  value="send message" class="btn">
       </form>
 
@@ -560,8 +651,53 @@ animation: forwards;
 </section>
 
 <!-- contact section ends -->
+<section>
 
-<!-- footer section starts  -->
+
+   <div class="faq_area section_padding_130" id="faq" style="    margin-top: -150px;">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-12 col-sm-8 col-lg-6">
+   
+                  <div class="heading">
+                     <img src="images/heading-img.png" alt="">
+                     <%if(faq.length>0){%>
+                     <h3>Frequently Asked Questions</h3>
+                     <%}else{%>
+                        <h3>No Faqs are Avaliable Right Now</h3>
+                        <%}%>
+                  </div>
+              </div>
+          </div>
+          <%
+          if(faq.length>0){
+             faq.forEach(element => {
+          %>
+          <div class="row justify-content-center" style="color:black;">
+    
+              <div class="col-12 col-sm-10 col-lg-8" style="margin: 23px;" >
+                  <div class="accordion faq-accordian" id="faqAccordion" style="box-shadow: 500px black; border: 2px solid rgb(198, 198, 198);">
+                      <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                          <div class="card-header" id="heading<%=element.id%>" >
+                              <h6 class="mb-0 collapsed" data-toggle="collapse" data-target="#collapse<%=element.id%>" aria-expanded="true" aria-controls="collapse<%=element.id%>"style="font-size: 2.5rem;color:black;"><%=element.q%>?<span class="lni-chevron-up" ></span></h6>
+                          </div>
+                          <div class="collapse" id="collapse<%=element.id%>" aria-labelledby="heading<%=element.id%>" data-parent="#faqAccordion">
+                              <div class="card-body">
+                                  <p style="font-size:1.5rem ;"><%=element.a%></p>
+                              </div>
+                          </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+<%
+   })
+          } %>
+  </div>
+
+
+</section>
+
 
 <section class="footer blockk" >
 
@@ -598,9 +734,15 @@ animation: forwards;
    <div class="credit"> &copy; copyright @ 2022 by <span>M.Ahmed & Esha</span> | all rights reserved! </div>
 
 </section>
-<!-- custom js file link  -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="jquery.smoove.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+   $('.alert').alert()
+   </script>
 
 </body>
 </html>

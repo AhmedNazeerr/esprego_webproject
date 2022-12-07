@@ -1,5 +1,31 @@
-const connection = require("../config/database");
+const mysql=require('mysql');
+const dotenv=require('dotenv').config();
+const nodemailer = require('nodemailer');
 
+const transporter = nodemailer.createTransport({
+  service: `${dotenv.parsed.Service}`,
+  host: `${dotenv.parsed.Host}`,
+  port: `${dotenv.parsed.Port}`,
+  secure: `${dotenv.parsed.Secure}`,
+  auth: {
+    user:`${dotenv.parsed.mail_user}`,
+    pass:`${dotenv.parsed.mail_pass}`// naturally, replace both with your real credentials or an application-specific password
+  },
+});
+//data base connection
+var connection = mysql.createConnection({
+    host:  `${dotenv.parsed.hostname}`,
+    user: `${dotenv.parsed.username}`,
+    password: `${dotenv.parsed.password}`,
+    database: `${dotenv.parsed.databasename}`,
+  });
+  //connection checker
+  connection.connect(function (err) {
+    if (err) throw err;
+    // console.log("connected");
+  });
+   
+const flash=require('connect-flash')
 //displaying form for adding new team member
 exports.teamadd = (req, res) => {
     if (req.session.role == "admin") {
@@ -60,6 +86,7 @@ exports.teamadd = (req, res) => {
         "')";
       connection.query(addingdataquery, (err) => {
         if (err) throw err;
+        req.flash('message','Member Added Successfully')
         res.redirect("/admin/team");
       });
     } else {
@@ -71,7 +98,7 @@ exports.teamadd = (req, res) => {
       var query = "select * from teamdetails";
       connection.query(query, (err, row, fields) => {
         if (err) throw err;
-        res.render("page/adminteam", { action: "list", data: row });
+        res.render("page/adminteam", { action: "list", data: row ,message:req.flash('message')});
       });
     } else {
       res.redirect("/home");
@@ -164,6 +191,7 @@ exports.teamadd = (req, res) => {
   
       connection.query(query, data, (err) => {
         if (!err) {
+          req.flash('message','Member updated Successfully')
           res.redirect("/admin/team");
         }
         console.log("error in update");
@@ -180,6 +208,7 @@ exports.teamadd = (req, res) => {
         "DELETE FROM `teamdetails` WHERE `workerid` = " + req.params.id;
       connection.query(tempquery, (err, row, fields) => {
         if (!err) {
+          req.flash('message','Member deleted Successfully')
           res.redirect("/admin/team");
         } else console.log(err);
       });

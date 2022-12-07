@@ -1,0 +1,45 @@
+
+exports.pastorder = (req, res) => {
+  if (req.session.role == "user") {
+    var username = req.session.username;
+    var query = `select * from pastorder where username='${username}'`;
+    connection.query(query, (err, result) => {
+      if (err) throw err;  
+      result.forEach(element => {
+        var getprodcount=`select prodinstock from productdetails where prodid='${element.prodid}'`;
+        connection.query(getprodcount,(err,row)=>{
+          if(err) throw err
+          else{
+            var update=`update pastorder set prodcount='${row[0].prodinstock}' where id='${element.id}'`;
+            connection.query(update,(err)=>{
+              if(err) throw err
+              else{
+                var query = `select * from pastorder where username='${username}'`;
+                connection.query(query,(err,val)=>{
+                  if(err) throw err
+                  else{
+                    res.render("page/pastorder", { data: val });
+                  }
+                })
+              
+
+              }
+            })
+          }
+        })
+      });
+
+    });
+  } else {
+    res.redirect("/account");
+  }
+};
+
+
+
+
+
+     <form action="/addtocartpastorder" method="post">
+                        <input type="hidden" name="prodid" value="<%=data.prodid%>">
+                        <button  type="submit" class="btn btn-sm bg-light border border-dark bodycolor textcolor ">Add to Cart</button>
+                        </form>

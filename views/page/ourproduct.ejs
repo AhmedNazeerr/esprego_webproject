@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
     <title>TEAM</title>
 </head>
 <style>
@@ -55,7 +59,7 @@
 }
 
 html{
-   font-size: 62.5%;
+    /* font-size: 62.5%; */
    overflow-x: hidden;
    scroll-behavior: smooth;
    scroll-padding-top: 6.5rem;
@@ -580,6 +584,45 @@ input[type="range"]::-moz-range-thumb{
 .footer .credit span{
    color:var(--main-color);
 }
+body {
+  background-color: white;
+}
+.wrappers {
+  width: 95%;
+  margin: 0 auto;
+}
+#search-containers {
+  margin: 1em 0;
+}
+#search-containers input {
+  background-color: transparent;
+  width: 40%;
+  border-bottom: 2px solid #110f29;
+  padding: 1em 0.3em;
+}
+#search-containers input:focus {
+  border-bottom-color: #6759ff;
+}
+#search-containers button {
+  padding: 1em 2em;
+  margin-left: 1em;
+  background-color: #6759ff;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 0.5em;
+}
+.button-values {
+  border: 2px solid #6759ff;
+  padding: 1em 2.2em;
+  border-radius: 3em;
+  background-color: transparent;
+  color: #6759ff;
+  cursor: pointer;
+}
+.button-values:hover{
+  background-color: #6759ff;
+}
+
 </style>
 <body>
   <header class="header">
@@ -599,29 +642,18 @@ input[type="range"]::-moz-range-thumb{
     </section>
  
  </header>
+ <div class="wrappers">
+    <div id="search-containers">
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Search product name here.."
+      />
+      <button id="search">Search</button>
+    </div>
+  </div>
 
-<div class="wrapper-body">
-  <div class="wrapper">
-      <div class="search">
-          <form action="/searchproduct">
-            <input type="text" class="search-input" placeholder="search..." name="pname" id="pname">
-            <input  class="search-icon" type="submit" value="S">
-        </div>
-      <div class="price-input" >
-      <div class="field">
-        <span>Min</span>
-        <input type="number" class="input-min" value="0" name="min" id="min">
-      </div>
-      <div class="separator">-</div>
-      <div class="field">
-        <span>Max</span>
-        <input type="number" class="input-max" value="10000" name="max" id="max">
-      </div>
-  </div>
-</form>
-    
-  </div>
-  </div>
+
 <div class = "main-wrapper">
   <div class = "container">
       <div class = "display-style-btns">

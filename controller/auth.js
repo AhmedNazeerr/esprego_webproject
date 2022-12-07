@@ -1,8 +1,33 @@
-const connection = require("../config/database");
-const transporter = require("../config/mailer");
-const bcrypt = require("bcrypt");
+const mysql=require('mysql');
+const dotenv=require('dotenv').config();
+//data base connection
+var connection = mysql.createConnection({
+    host:  `${dotenv.parsed.hostname}`,
+    user: `${dotenv.parsed.username}`,
+    password: `${dotenv.parsed.password}`,
+    database: `${dotenv.parsed.databasename}`,
+  });
+  //connection checker
+  connection.connect(function (err) {
+    if (err) throw err;
+    // console.log("connected");
+  });
+  const nodemailer = require('nodemailer');
+
+  const transporter = nodemailer.createTransport({
+    service: `${dotenv.parsed.Service}`,
+    host: `${dotenv.parsed.Host}`,
+    port: `${dotenv.parsed.Port}`,
+    secure: `${dotenv.parsed.Secure}`,
+    auth: {
+      user:`${dotenv.parsed.mail_user}`,
+      pass:`${dotenv.parsed.mail_pass}`// naturally, replace both with your real credentials or an application-specific password
+    },
+  });
+
 var valid = require("validator");
 const path=require('path')
+var flash = require('connect-flash');
 
 exports.login = (req, res) => {
     var pname = req.body.forloginname;
@@ -10,27 +35,30 @@ exports.login = (req, res) => {
     var addingdataquery = `SELECT * FROM account WHERE username='${pname}'`;
     connection.query(addingdataquery, (err, row) => {
       if (err) throw err;
-      if (row.length && bcrypt.compareSync(ppass, row[0].password)) {
-        // const mailOptions = {
-        //   from: "esprego.coffe@gmail.com",
-        //   to: row[0].email,
-        //   subject: "Verification",
-        //   text: `Verify your credentials code : ${row[0].otp}`,
-        // };
-        // transporter.sendMail(mailOptions, function (error, info) {
-        //   if (error) {
-        //     console.log(error);
-        //   } else {
-        //     console.log("Email sent: " + info.response);
+      if (row.length && (row[0].password==ppass)) {
+        const mailOptions = {
+          from: "esprego.coffe@gmail.com",
+          to: row[0].email,
+          subject: "Verification",
+          text: `Verify your credentials code : ${row[0].otp}`,
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+        req.flash('message','error in sending mail try again later')
+        res.redirect('/account')
+          } else {
+            console.log("Email sent: " + info.response);
             res.render("page/verify_login", {
               data: row[0].otp,
               uname: row[0].username,
               urole: row[0].role,
             });
-        //   }
-        // });
+          }
+        });
       } else {
         console.log("data not present");
+        req.flash('message','Invalid Credentials');
         res.redirect("/account");
       }
     });
@@ -39,9 +67,13 @@ exports.login = (req, res) => {
 
 
   exports.changepassword =async (req, res) => {
+    if(req.session.username){
+      res.redirect('/account')
+    }
+    else{
     var num4=generateCode();
     var pppname = req.body.pchangename;
-    var pppass=await bcrypt.hash(req.body.pchangepass, 10);
+    var pppass=req.body.pchangepass;
     var addingdataquery = `SELECT * FROM account WHERE username='${pppname}'`;
     connection.query(addingdataquery, (err, row) => {
       if (err) throw err;
@@ -55,9 +87,10 @@ exports.login = (req, res) => {
           transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log(error);
+              req.flash('message','error in sending mail try again later')
+              res.redirect('/account')
             } else {
               console.log("Email sent: " + info.response);
-
               res.render('page/verify_changep',{data:pppass,data1:num4,data2:pppname})
             }
             })
@@ -65,12 +98,18 @@ exports.login = (req, res) => {
         }
      else {
         console.log("data not present");
-        res.redirect("/account_changepassword");
+        req.flash('message','User not found')
+        res.redirect("/account");
       }
      })
+    }
 };
    
 exports.getverifyloginchangepassword =(req, res) => {
+  if(req.session.username){
+    res.redirect('/account')
+  }
+  else{
     var code_10 = req.body.code_verify;
     var code_30 = req.body.otp;
     var code_40 = req.body.forchangep;
@@ -80,6 +119,7 @@ exports.getverifyloginchangepassword =(req, res) => {
         connection.query(querys, (err) => {
             if (!err) {
                 console.log("update successfully");
+                req.flash('message','Password Changed Successfully')
               res.redirect("/account");
             }
             else{
@@ -96,50 +136,57 @@ console.log('error in update occur')
         data2:req.body.forchangep
       });
     }
+  }
   };
 
 
 
   
   exports.getverifylogin = (req, res) => {
+    if(req.session.username){
+      res.redirect('/account')
+    }
+    else{
     var code_1 = req.body.code_1;
     var code_2 = req.body.code_2;
-    // if (code_1 == code_2) {
+    if (code_1 == code_2) {
       req.session.username = req.body.code_3;
       req.session.role = req.body.code_4;
-      // var num4 = generateCode();
+      var num4 = generateCode();
       if (req.session.role == "admin") {
-        // var query = "update account set otp=? where username=?";
-        // var data = [num4, req.body.code_3];
-        // connection.query(query, data, (err) => {
-        //   if (!err) {
+        var query = "update account set otp=? where username=?";
+        var data = [num4, req.body.code_3];
+        connection.query(query, data, (err) => {
+          if (!err) {
             res.redirect("/admin/team");
             console.log(req.session);
-        //   } else {
-        //     console.log("error in update getverify_login");
-        //   }
-        // });
-      } else {
-        // var query = "update account set otp=? where username=?";
-        // var data = [num4, req.body.code_3];
-        // connection.query(query, data, (err) => {
-        //   if (!err) {
-        //     console.log(req.session);
+          } else {
+            console.log("error in update getverify_login");
+          }
+        });
+      } 
+      else {
+        var query = "update account set otp=? where username=?";
+        var data = [num4, req.body.code_3];
+        connection.query(query, data, (err) => {
+          if (!err) {
+            console.log(req.session);
             res.redirect("/user_account");
-        //   } else {
-        //     console.log("error in update getverify_login");
-        //   }
-        // });
+          } else {
+            console.log("error in update getverify_login");
+          }
+        });
       }
-  //   } else {
-  //     console.log("invalid verification code");
-  //     res.render("page/verify_login", {
-  //       data: req.body.code_2,
-  //       uname: req.body.code_3,
-  //       urole: req.body.code_4,
-  //     });
-  //   }
-  // };
+    } else {
+      console.log("invalid verification code");
+      res.render("page/verify_login", {
+        data: req.body.code_2,
+        uname: req.body.code_3,
+        urole: req.body.code_4,
+      });
+    }
+  };
+
     }
   
   function generateCode() {
@@ -149,7 +196,7 @@ console.log('error in update occur')
   }
   exports.register = async (req, res) => {
     var num = generateCode();
-    var hashedpassword = await bcrypt.hash(req.body.passwordregister, 10);
+    var hashedpassword = req.body.passwordregister;
     var registerusername = req.body.usernameregister;
     var registeremail = req.body.emailregister;
     var checkquery = `Select * from account where username='${registerusername}'`;
@@ -157,6 +204,7 @@ console.log('error in update occur')
       if (err) throw err;
       if (row.length > 0) {
         console.log("try different username");
+        req.flash('message','Try Different username, this username is already in use')
         res.redirect("/account");
       } else {
         //email validation
@@ -166,6 +214,7 @@ console.log('error in update occur')
             if (err) throw err;
             if (row.length > 0) {
               console.log("try different email");
+              req.flash('message','Try Different email')
               res.redirect("/account");
             } else {
               const mailOptions = {
@@ -177,6 +226,8 @@ console.log('error in update occur')
               transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
                   console.log(error);
+              req.flash('message','error in sending mail try again later')
+              res.redirect('/account')
                 } else {
                   console.log("Email sent: " + info.response);
                   res.render("page/verify", {
@@ -192,6 +243,7 @@ console.log('error in update occur')
           });
         } else {
           console.log("entered email was invalid");
+          req.flash('message','Invalid Email Address')
           res.redirect("/account");
         }
       }
@@ -212,6 +264,7 @@ console.log('error in update occur')
       var addingdata = `INSERT INTO account(username,password,email,otp,role) VALUES ('${username_fetch}','${password_fetch}','${email_fetch}','${num2}','user')`;
       connection.query(addingdata, (err) => {
         if (err) throw err;
+        req.flash('message','Account Created Successfully!')
         res.redirect("/account");
       });
     } else {
@@ -287,3 +340,42 @@ console.log('error in update occur')
   };
 
  
+
+  // res.render('page/verify_changep',{data:pppass,data1:num4,data2:pppname})
+  // res.render("page/verify", {
+  //   data: num,
+  //   val1: registerusername,
+  //   val2: registeremail,
+  //   val3: hashedpassword,
+  // });
+  // res.render("page/verify_changep", {
+  //   data: req.body.new_password,
+  //   data1: code_30,
+  //   data2:req.body.forchangep
+  // });
+  // res.render("page/verify_login", {
+  //   data: row[0].otp,
+  //   uname: row[0].username,
+  //   urole: row[0].role,
+  // });
+  exports.check0 = (req, res) => {
+   if(req.session.username){
+    res.redirect('/account')
+   }
+  };
+  exports.check1 = (req, res) => {
+    if(req.session.username){
+      res.redirect('/account')
+     }
+  };
+  exports.check2 = (req, res) => {
+    if(req.session.username){
+      res.redirect('/account')
+     }
+  };
+  exports.check3 = (req, res) => {
+    if(req.session.username){
+      res.redirect('/account')
+     }
+  };
+  

@@ -122,27 +122,27 @@
                 </div>
                 <div class="inputBox">
                     <span>address :</span>
-                    <input type="text" placeholder="room - street - locality"  name="address" required>
+                    <input type="text" placeholder="room - street - locality" minlength="10"  name="address" required>
                 </div>
                 <div class="inputBox">
                     <span>city :</span>
-                    <input type="text" placeholder="Pakistan" name="city" required>
+                    <input type="text" placeholder="Pakistan" minlength="5" name="city" required>
                 </div>
 
                 <div class="flex">
                     <div class="inputBox">
                         <span>state :</span>
-                        <input type="text" placeholder="faisalabad"  name='state' required>
+                        <input type="text" placeholder="faisalabad" minlength="5"  name='state' required>
                     </div>
                     <div class="inputBox">
                         <span>zip code :</span>
-                        <input type="text" placeholder="123 456"  name="zip" required>
+                        <input type="number" placeholder="123 456"  min="000"  name="zip" required>
                     </div>
                 </div>
 
             </div>
 
-            <div class="col">
+            <!-- <div class="col">
 
                 <h3 class="title">payment</h3>
 
@@ -150,30 +150,32 @@
                     <span>cards accepted :</span>
                     <img src="../images/card_img.png" alt="">
                 </div>
-                <div class="inputBox">
+                 <div class="inputBox">
                     <span>name on card :</span>
-                    <input type="text" placeholder="mr. abc efg" name="cardname" value="<%=cardname%>" required>
-                </div>
-                <div class="inputBox">
+                    <input type="text" placeholder="mr. abc efg" name="cardname" value=/*" required>
+                </div> -->
+                <!-- <div class="inputBox">
                     <span>credit card number :</span>
-                    <input type="number" min="000000" placeholder="1111-2222-3333-4444"value="<%=cardno%>" name='cardno' required >
-                </div>
+                    <input type="number" min="000000" placeholder="1111-2222-3333-4444"value="" name='cardno' required >
+                </div> -->
  
-                <div class="flex">
+                <!-- <div class="flex">
                     <div class="inputBox">
                         <span>CVV :</span>
-                        <input type="text" placeholder="1234" value="<%=cvv%>" name="cvv" required>
-                    </div>
-                </div>
+                        <input type="text" placeholder="1234" value="" name="cvv" required>
+                    </div> -->
+                <!-- </div> -->
 
-            </div>
+            <!-- </div> -->
     
         </div>
+        <input type="hidden" value="<%=cartid%>" name="cartid">
+        <input type="hidden" value="<%=subtotal%>" name="subtotal">
         <input type="submit" value="checkout" class="submit-btn">
 
     </form>
 
 </div>    
-    
+  
 </body>
 </html>

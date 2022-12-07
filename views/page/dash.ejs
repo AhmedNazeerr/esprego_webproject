@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <!--<title>Admin Dashboard Panel</title>--> 
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
 </head>
 <style>
     /* ===== Google Font Import - Poppins ===== */
@@ -395,6 +399,326 @@ form .input-custom{
   input .image{
     margin: 10px;
   }
+  
+.contener {
+    float: left;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 320px;
+    height: 190px;
+    overflow: hidden;
+    background:var(--panel-color);
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 #00000073;
+    transition: all 0.3s;
+}
+
+.contener:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 11px 14px rgb(0 0 0 / 25%), 0 8px 20px rgb(0 0 0 / 10%);
+}
+
+.meta-contener {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 110px;
+   
+    padding: 10px 20px;
+}
+
+.meta-contener .title {
+    padding: 0;
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.meta-contener .desc {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.button-contener {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    text-align: center;
+    height: 40px;
+    margin: 2px;
+    padding-bottom:  6px;
+}
+
+.button-contener .button {
+    width: 100%;
+    padding: 6px 0;
+    text-decoration: none;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.button-contener .button:hover {
+    padding-left: 15px;
+}
+.topbar {
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+    width: 100%;
+    padding: 0 20px;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 2fr 10fr 0.4fr 1fr;
+    align-items: center;
+    z-index: 1;
+}
+
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo h2 {
+    color: #299B63;
+}
+
+.search {
+    position: relative;
+    width: 60%;
+    justify-self: center;
+}
+
+.search input {
+    width: 100%;
+    min-width: 128px;
+    height: 40px;
+    padding: 0 40px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #f5f5f5;
+}
+
+.search i {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.fa-bell {
+    justify-self: right;
+}
+
+.user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    justify-self: right;
+}
+
+
+/* sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    width: 260px;
+    height: calc(100% - 60px);
+    background: #299B63;
+    overflow-x: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.sidebar ul {
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    width: 100%;
+    list-style: none;
+}
+
+.sidebar ul li:hover {
+    background: #fff;
+}
+
+.sidebar ul li:hover a {
+    color: #299B63;
+}
+
+.sidebar ul li a {
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+/* main */
+
+.main {
+    position: absolute;
+    top: 60px;
+    width: calc(100% - 260px);
+    min-height: calc(100vh - 60px);
+    left: 260px;
+    background: #ffffff;
+    left: 2px;
+    height:100vh ;
+    width: calc(100% - 250px);
+}
+
+.cards {
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    width: 90%;
+}
+
+.cards .card {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+    font-size: 35px;
+    font-weight: 500;
+    color: #b0aefd;
+}
+
+.card-name {
+    color: #888;
+    font-weight: 600;
+}
+
+.icon-box i {
+    font-size: 45px;
+    color: #b0aefd;
+}
+
+
+/* charts */
+
+.charts {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    height: 35vw;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.chart {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    height: 55vh;
+}
+
+.chart h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #666;
+    text-align: center
+}
+
+@media (max-width:1115px) {
+    .sidebar {
+        width: 60px;
+    }
+    .main {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+}
+
+@media (max-width:880px) {
+    /* .topbar {
+        grid-template-columns: 1.6fr 6fr 0.4fr 1fr;
+    } */
+    .fa-bell {
+        justify-self: left;
+    }
+    .cards {
+        width: 100%;
+        padding: 35px 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+    .charts {
+        grid-template-columns: 1fr;
+    }
+    .doughnut-chart {
+        padding: 50px;
+    }
+    #doughnut {
+        padding: 50px;
+    }
+}
+
+@media (max-width:500px) {
+    .topbar {
+        grid-template-columns: 1fr 5fr 0.4fr 1fr;
+    }
+    .logo h2 {
+        font-size: 20px;
+    }
+    .search {
+        width: 80%;
+    }
+    .search input {
+        padding: 0 20px;
+    }
+    .fa-bell {
+        margin-right: 5px;
+    }
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .doughnut-chart {
+        padding: 10px;
+    }
+    #doughnut {
+        padding: 0px;
+    }
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}
+
 </style>
 <body>
     <nav>
@@ -409,34 +733,49 @@ form .input-custom{
         <div class="menu-items">
             <ul class="nav-links">
                 <li><a href="/dash">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dahsboard</span>
-                </a></li>
-                <li><a href="/admin/team/add">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Add new member</span>
-                </a></li>
-                <li><a href="/admin/team">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Our Team</span>
-                </a></li>
-                <li><a href="/admin/product/add">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Add product</span>
-                </a></li>
-                <li><a href="/admin/product">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Our product</span>
-                </a></li>
-                <li><a href="/admin/user">
-                  <i class="uil uil-files-landscapes"></i>
-                  <span class="link-name">Our User</span>
+                  <i class="uil uil-estate"></i>
+                  <span class="link-name">Dahsboard</span>
               </a></li>
-              <li><a href="/contactadmin">
-                <i class="uil uil-files-landscapes"></i>
-                <span class="link-name">Customer Support</span>
-            </a></li>
-                            </ul>
+                  <li><a href="/admin/team/add">
+                      <i class="uil uil-files-landscapes"></i>
+                      <span class="link-name">Add new member</span>
+                  </a></li>
+                  <li><a href="/admin/team">
+                      <i class="uil uil-files-landscapes"></i>
+                      <span class="link-name">Our Team</span>
+                  </a></li>
+                  <li><a href="/admin/product/add">
+                      <i class="uil uil-files-landscapes"></i>
+                      <span class="link-name">Add product</span>
+                  </a></li>
+                  <li><a href="/admin/product">
+                      <i class="uil uil-files-landscapes"></i>
+                      <span class="link-name">Our product</span>
+                  </a></li>
+                  <li><a href="/admin/user">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Our User</span>
+                </a></li>
+                <li><a href="/contactadmin">
+                  <i class="uil uil-files-landscapes"></i>
+                  <span class="link-name">Customer Support</span>
+              </a></li>
+              <li><a href="/admin/add/faq">
+                  <i class="uil uil-files-landscapes"></i>
+                  <span class="link-name">Add a Faq</span>
+              </a></li>
+              <li><a href="/allfaq">
+                  <i class="uil uil-files-landscapes"></i>
+                  <span class="link-name">All faqs</span>
+              </a></li>
+              <li>
+                <li><a href="/genreports">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Make Report</span>
+                </a></li>
+                <li>
+                              </ul>
+              
             
             <ul class="logout-mode">
               <li><a href="/adminsignout">
@@ -462,17 +801,273 @@ form .input-custom{
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>  
         </div>
-<div class="dash-content">
+<!-- <div class="dash-content"> -->
     <div class="container">
-    <a href="/getpdf">Generate Report Product</a>
-    <a href="/getpdff">Generate Report Team</a>
+        <div class="main">
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"><%=pastorder%></div>
+                        <div class="card-name">Orders</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-bags-shopping"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"><%=usercount%></div>
+                        <div class="card-name">Users</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"><%=teamcount%></div>
+                        <div class="card-name">Employees</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">$<%=earns%></div>
+                        <div class="card-name">Earnings</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="charts">
+                <div class="chart">
+                    <h2>Earnings (past 12 months)</h2>
+                    <div>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart doughnut-chart">
+                    <h2>DataBase View</h2>
+                    <div>
+                        <canvas id="doughnut"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </section>
+</section>
+      <section class="dashboard">
+        <div class="container-fluid pt-4 px-4 "style="background-color:white;">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Order</h6>
+                        <%if(data.length>0){%>
+                        <a href="/showallorders">Show All</a>
+                        <%}%>
+                    </div>
+                    <%if(data.length>0){%>
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-dark">
+                                        <th scope="col">OrderNO</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Customer</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%if(data.length > 0){
+            
+                                        data.forEach(function(data){
+                                     %> 
+                                    <tr>
+                                        <td><%=data.id%></td>
+                                        <td><%=data.date%></td>
+                                        <td><%=data.username%></td>
+                                        <td>$<%=data.subtotal%></td>
+                                        <td><%=data.orderstatus%></td>
+                                        <td><a class="btn btn-sm btn-primary" href="/adminorderdetails/<%=data.id%>">Detail</a></td>
+                                    </tr>
+                                    <%
+                                          });
+                                      }
+                                      %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}else{%>
+                         <h3>No Orders are available </h3>
+                         <%}%> 
+                </div>
+            </div>
+       
+            <div class="container-fluid pt-4 px-4 "style="background-color:white;">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Payment</h6>
+                        <%if(dataearn.length>0){%>
+                        <a href="/showallearnings">Show All</a>
+                        <%}%>
+                    </div>
+                    <%if(dataearn.length>0){%>
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-dark">
+                                        <th scope="col">Payment no</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Customer</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%if(dataearn.length > 0){
+            
+                                        dataearn.forEach(function(data1){
+                                     %> 
+                                    <tr>
+                                        <td><%=data1.id%></td>
+                                        <td><%=data1.date%></td>
+                                        <td><%=data1.username%></td>
+                                        <td>$<%=data1.subtotal%></td>
+                                        <td><a class="btn btn-sm btn-primary" href="/eachdetail/<%=data1.id%>">Detail</a></td>
+                                    </tr>
+                                    <%
+                                          });
+                                      }
+                                      %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}else{%>
+                         <h3>No Earnings are available </h3>
+                         <%}%> 
+                </div>
+            </div>
 
 
+            <div class="container-fluid pt-4 px-4 "style="background-color:white;">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <%if(datascrap.length>0){%>
+                        <a href="/showallscraps" class="btn btn-primary">Show All</a>
+                        <%}%>
+                        <a href="/scrap" class="btn btn-primary">Scrap Data</a>
+                    </div>
+                    <%if(datascrap.length>0){%>
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-dark">
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%if(datascrap.length > 0){
+            
+                                        datascrap.forEach(function(data1){
+                                     %> 
+                                    <tr>
+                                        <td><%=data1.title%></td>
+                                        <td><%=data1.price%></td>
+                                    </tr>
+                                    <%
+                                          });
+                                      }
+                                      %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}else{%>
+                         <h3>No Scrapped Data is available </h3>
+                         <%}%> 
+                </div>
+            </div>
+       
+
+      </section>
+
+        <br>
+        <br>
+        
+        <br>
+        <br>
+
+        
+        <br>
+        <br>
 
 
-    <script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+      <script>
+        var ctx = document.getElementById('lineChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Earnings in $',
+            data: [0,0,0,0,0,0,0,0,0,0,0, '<%=earns%>'],
+            backgroundColor: [
+                'rgba(85,85,85, 1)'
+
+            ],
+            borderColor: 'rgb(41, 155, 99)',
+
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
+      </script>
+      <script >
+        var ctx2 = document.getElementById('doughnut').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: ['Products', 'Team', 'User','other'],
+
+        datasets: [{
+            label: 'DataBase',
+            data: [`<%=product%>`, `<%=teamcount%>`,`<%=usercount%>`, 0],
+            backgroundColor: [
+            'rgb(196, 247, 222)',
+    'rgb(175, 219, 248)',
+    'rgb(248, 235, 203)',
+    'rgb(233, 186, 245)'
+
+            ],
+            borderColor: [
+                'rgba(41, 155, 99, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(120, 46, 139,1)'
+
+            ],
+            borderWidth: 1
+        }]
+
+    },
+    options: {
+        responsive: true
+    }
+});
+      </script>
+<script>
+
+
         const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");

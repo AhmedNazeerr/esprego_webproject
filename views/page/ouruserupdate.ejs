@@ -14,7 +14,7 @@
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--<title>Admin Dashboard Panel</title>--> 
 </head>
 <style>
@@ -466,10 +466,18 @@ form .input-custom{
             <div class="user-details">
               <div class="input-box">
                 <span class="details">User Role</span>
-                <input type="text" placeholder="Enter user role" required name="userrole" value="<%=data[0].role%>">
               </div>
               <input type="hidden"  name="userid" value="<%=data[0].username%>">
             </div>
+            <select class="form-select"  name="userrole"aria-label="Default select example">
+                <%if((data[0].role)=="admin"){%>
+                <option value="admin" selected>Admin</option>
+                <option value="user">User</option>
+            <% }else{%>
+                <option value="admin">Admin</option>
+                <option value="user" selected>User</option>
+                <%}%>
+              </select>
             <div class="button">
               <input type="submit" value="Register">
             </div>

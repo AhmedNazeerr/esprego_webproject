@@ -1,0 +1,45 @@
+
+<div class="wrapper-body">
+  <div class="wrapper">
+      <div class="search">
+          <form action="/searchproduct">
+            <input type="text" class="search-input" placeholder="search..." name="pname" id="pname">
+            <input  class="search-icon" type="submit" value="S">
+        </div>
+      <div class="price-input" >
+      <div class="field">
+        <span>Min</span>
+        <input type="number" class="input-min" value="0" name="min" id="min">
+      </div>
+      <div class="separator">-</div>
+      <div class="field">
+        <span>Max</span>
+        <input type="number" class="input-max" value="10000" name="max" id="max">
+      </div>
+  </div>
+</form>
+    
+  </div>
+  </div>
+
+
+
+
+
+  <div class="wrapper-body">
+  <div class="wrapper">
+      <div class="search">
+          <form action="/searchteam">
+            <input type="text" class="search-input" placeholder="search..." name="sname" id="sname">
+            <input  class="search-icon" type="submit" value="S">
+        </div>
+      <div class="price-input" >
+      <div class="field">
+        <span>Year OF Experience</span>
+        <input type="number" class="input-min" max="60" value="60" name="year" id="year">
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+      

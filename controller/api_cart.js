@@ -1,6 +1,29 @@
-const connection = require("../config/database");
-const transporter = require("../config/mailer");
-const bcrypt = require("bcrypt");
+const mysql=require('mysql');
+const dotenv=require('dotenv').config();
+//data base connection
+var connection = mysql.createConnection({
+    host:  `${dotenv.parsed.hostname}`,
+    user: `${dotenv.parsed.username}`,
+    password: `${dotenv.parsed.password}`,
+    database: `${dotenv.parsed.databasename}`,
+  });
+  //connection checker
+  connection.connect(function (err) {
+    if (err) throw err;
+    // console.log("connected");
+  });
+  const nodemailer = require('nodemailer');
+  const transporter = nodemailer.createTransport({
+    service: `${dotenv.parsed.Service}`,
+    host: `${dotenv.parsed.Host}`,
+    port: `${dotenv.parsed.Port}`,
+    secure: `${dotenv.parsed.Secure}`,
+    auth: {
+      user:`${dotenv.parsed.mail_user}`,
+      pass:`${dotenv.parsed.mail_pass}`// naturally, replace both with your real credentials or an application-specific password
+    },
+  });
+
 // const pdf = require("html-pdf");
 // const fs = require("fs");
 var valid = require("validator");
@@ -19,8 +42,9 @@ exports.addtocart = (req, res) => {
       if (err) throw err;
       else {
         if (result.length > 0) {
-          console.log("product already exsists in the cart");
-          res.redirect(`/productdetail/${prodid}`);
+          console.log("product already exists in the cart");
+          req.flash('message','Product already exists inthe cart ')
+          res.redirect(`/usercart`);
         } else {
           var getproductdetail = `select * from productdetails where prodid='${prodid}'`;
           connection.query(getproductdetail, (err, row) => {
@@ -37,6 +61,7 @@ exports.addtocart = (req, res) => {
                   connection.query(lessproduct, (err) => {
                     if (err) throw err;
                     else {
+                      req.flash('message','Successfully added to cart')
                       res.redirect(`/usercart`);
                     }
                   });
@@ -49,6 +74,7 @@ exports.addtocart = (req, res) => {
     });
   } else {
     console.log("login in first");
+    req.flash('message','login or signup,in order to use cart')
     res.redirect("/account");
   }
 };
@@ -74,6 +100,7 @@ exports.getusercart = (req, res) => {
                     data: row,
                     pageitem: resultant[0].namesCount,
                     subtotals: resu[0].Total,
+                    message:req.flash('message')
                   });
                 } else {
                   console.log("total is zero");
@@ -127,6 +154,7 @@ exports.increasecount = (req, res) => {
                       if (err) throw err;
                       else {
                         console.log("count incremented by 1");
+                        req.flash('message','incremented by 1')
                         res.redirect("/usercart");
                       }
                     });
@@ -150,6 +178,7 @@ exports.increasecount = (req, res) => {
                         if (err) throw err;
                         else {
                           console.log("count incremented by 1");
+                          req.flash('message','incremented by 1')
                           res.redirect("/usercart");
                         }
                       });
@@ -171,6 +200,7 @@ exports.increasecount = (req, res) => {
                         if (err) throw err;
                         else {
                           console.log("count incremented by 1");
+                          req.flash('message','incremented by 1')
                           res.redirect("/usercart");
                         }
                       });
@@ -178,7 +208,7 @@ exports.increasecount = (req, res) => {
                   });
                 }
               } else {
-                newval = reso[0].count;
+                newval = reso[0].count + resuls[0].prodinstock;
                 prodval = resuls[0].prodinstock - 1;
                 if (prodval < 0) {
                   prodval = 0;
@@ -193,6 +223,7 @@ exports.increasecount = (req, res) => {
                       if (err) throw err;
                       else {
                         console.log("count incremented by 1");
+                        req.flash('message','incremented by 1')
                         res.redirect("/usercart");
                       }
                     });
@@ -267,6 +298,7 @@ exports.decreasecount = (req, res) => {
                     if (err) throw err;
                     else {
                       console.log("count decremented by 1");
+                      req.flash('message','decremented by 1')
                       res.redirect("/usercart");
                     }
                   });
@@ -305,6 +337,7 @@ connection.query(query,(err,result)=>{
             if(err) throw err
             else{
               console.log('successfull deletion of cart item')
+              req.flash('message','successfull deletion of cart item')
               res.redirect('/usercart')
             }
           })
@@ -317,6 +350,7 @@ connection.query(query,(err,result)=>{
      
   } else {
     console.log("login in first");
+    req.flash('message','login or signup,in order to use cart')
     res.redirect("/account");
   }
 };

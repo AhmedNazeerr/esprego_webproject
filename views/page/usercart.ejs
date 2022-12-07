@@ -517,6 +517,14 @@ form .input-custom{
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Cart</span>
                 </a></li>
+                <li><a href="/pastorder">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Past Order</span>
+                </a></li>
+                <li><a href="/getwishlist">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Wish List</span>
+                </a></li>
                             </ul>
             
             <ul class="logout-mode">
@@ -541,10 +549,16 @@ form .input-custom{
     <section class="dashboard bodycolor">
         <div class="top bodycolor">
             <i class="uil uil-bars sidebar-toggle bodycolor"></i>  
-        </div>
-      
-     
+        </div>     
         <div class="container bg-white rounded-top mt-5 sizee bodycolor shadows">
+            <%if(message.length>0){%>
+                <div class="alert alert-warning alert-dismissible fade show" style="font-size: 20px;" role="alert">
+                  <%=message%>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <%}%>
             <div class="row d-flex justify-content-center bodycolor ">
                 <div class="col-lg-10 col-12 pt-3 bodycolor">
                     <div class="d-flex ">
@@ -604,6 +618,7 @@ form .input-custom{
                         <input type="hidden" name="prodcount" value="<%=data[0].count%>">
                         <input type="hidden" name="cartid" value="<%=data[0].id%>">
                         <input type="hidden" name="prodname" value="<%=data[0].prodname%>">
+                        <input type="hidden" name="subtotal" value="<%=subtotals%>">
                             <button  type="submit" class="btn btn-sm bg-light border border-dark bodycolor textcolor ">CONTINUE</button>
                         </form>
                         <%}%>
@@ -615,8 +630,11 @@ form .input-custom{
 
 </section>
    
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
+        $('.alert').alert()
         const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");

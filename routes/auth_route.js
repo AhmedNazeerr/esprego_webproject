@@ -33,10 +33,16 @@ router.get("/adminsignout", (req, res) => auth.adminsignout(req,res));
 
 router.post("/verify", (req, res) => auth.getverify(req, res));
 
+router.get("/verify", (req, res) => auth.check0(req, res));
+
 
 
 router.post("/verify_login", (req, res) => auth.getverifylogin(req, res));
+router.get("/verify_login", (req, res) => auth.check1(req, res));
 router.post("/verify_login_change_password", (req, res) => auth.getverifyloginchangepassword(req, res));
+router.get("/verify_login_change_password", (req, res) => auth.check2(req, res));
+
 router.post("/account_changepassword", (req, res) => auth.changepassword(req, res));
+router.get("/account_changepassword", (req, res) => auth.check3(req, res));
 
 module.exports = router;
