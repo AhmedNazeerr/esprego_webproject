@@ -986,7 +986,7 @@ exports.renderreplypost = (req, res) => {
   if (req.session.username) {
     var revid = req.body.revid;
     var prodid = req.body.prodid;
-    var username = req.body.username;
+    var username = req.session.username;
     var reply = req.body.reply;
     var query = `insert into comment (username,prodid,reply,revid) values ('${username}','${prodid}','${reply}','${revid}')`;
     connection.query(query, (err) => {
